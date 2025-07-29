@@ -1,8 +1,9 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.CustermerDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.CustormerModel;
-import edu.lk.ijse.projectgym.demo76promax.Modal.CustormerModel.*;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CustormerManegeBO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import java.sql.SQLException;
 
 public class addCustermer {
-    private CustormerModel custormerModel = new CustormerModel();
+    private CustormerManegeBO custormerManegeBO = BOFactory.getInstance().getBOTypes(BOTypes.CUSTORMERMANEGE);
+  //  private CustormerModel custormerModel = new CustormerModel();
 
     private CustermerDto custermer;
 
@@ -116,7 +118,7 @@ public class addCustermer {
 
         }
 
-        custormerModel.saveCustomer(custermer);
+        custormerManegeBO.saveCustomer(custermer);
 
     }
 

@@ -1,20 +1,22 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.SystemUser;
-import edu.lk.ijse.projectgym.demo76promax.Modal.Registetionmodal;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
 public class RegitretionController {
+    private UsermanegeBO usermanegeBO = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
 
-    private Registetionmodal registetionmodal;
+   // private Registetionmodal registetionmodal;
     private SystemUser systemUser;
 
     @FXML
@@ -38,7 +40,7 @@ public class RegitretionController {
     public RegitretionController() {
 
 
-        registetionmodal = new Registetionmodal();
+        //registetionmodal = new Registetionmodal();
 
     }
 
@@ -89,7 +91,7 @@ public class RegitretionController {
             String userNumber1 = textfildUserNumber.getText();
 
             systemUser = new SystemUser(userId1, userPassword1, userRoll1, userName1, userNumber1);
-            registetionmodal.savenewMember(systemUser);
+            usermanegeBO.save(systemUser);
         }
 
     }

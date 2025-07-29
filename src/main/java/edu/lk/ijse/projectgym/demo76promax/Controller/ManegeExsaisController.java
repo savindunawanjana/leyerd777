@@ -4,7 +4,9 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.ExsaisDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.ExsaisTm;
 import edu.lk.ijse.projectgym.demo76promax.Modal.ExsasaisModel;
-import edu.lk.ijse.projectgym.demo76promax.Modal.Registetionmodal;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,8 +22,10 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ManegeExsaisController implements Initializable {
+    //private SystemuserDAO systemuserDAO = DAOFactory.getInstance().getDao(DAOTipes.SYSTEMUSER);
+    private UsermanegeBO systemusermanegeBo = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
 
-    private Registetionmodal registetionmodal = new Registetionmodal();
+   // private Registetionmodal registetionmodal = new Registetionmodal();
     private ExsasaisModel exsasaisModel = new ExsasaisModel();
     public AnchorPane AnchorPane;
     public TextField txtExercisId;
@@ -71,7 +75,7 @@ public class ManegeExsaisController implements Initializable {
 
         try {
             String cach = loginManeger.arry[0];
-            String id = registetionmodal.getuserId(cach);
+            String id = systemusermanegeBo.getuserId(cach);
             System.out.println(id);
             ExsaisDto dto = new ExsaisDto(Integer.parseInt(txtExercisId.getText()), textexsaisName.getText(), txtCategory.getText(),id);
 
@@ -94,7 +98,7 @@ public class ManegeExsaisController implements Initializable {
 
         try {
             String cach = loginManeger.arry[0];
-            String id = registetionmodal.getuserId(cach);
+            String id = systemusermanegeBo.getuserId(cach);
             System.out.println(id);
             ExsaisDto dto = new ExsaisDto(Integer.parseInt(txtExercisId.getText()), textexsaisName.getText(), txtCategory.getText(), id);
             String rsp = exsasaisModel.updateMethod(dto);

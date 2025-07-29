@@ -3,7 +3,9 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
-import edu.lk.ijse.projectgym.demo76promax.Modal.Registetionmodal;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,10 +24,12 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class Addcoach implements Initializable {
-
+  //  private SystemuserDAO systemuserDAO = DAOFactory.getInstance().getDao(DAOTipes.SYSTEMUSER);
+    private UsermanegeBO usermanegeBO = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
     private EmployeDto employeDto;
-    private Registetionmodal registModel = new Registetionmodal();
+   // private Registetionmodal registModel = new Registetionmodal();
     private EmployeModal employeModal = new EmployeModal();
+
 
 
     public AnchorPane anchorpane;
@@ -47,6 +51,7 @@ public class Addcoach implements Initializable {
         textcoachName.clear();
         coachEmailadressId.clear();
         coachNumber.clear();
+
     }
 
     public void saveMethod() throws SQLException, ClassNotFoundException {
@@ -63,7 +68,7 @@ public class Addcoach implements Initializable {
         String date = today.toString();
 
         String system_user_Id = loginManeger.arry[0];
-        String useroll = registModel.getuserRollmethod(system_user_Id);
+        String useroll = usermanegeBO.getuserRollmethod(system_user_Id);
 
         employeDto = new EmployeDto(
                 textcoachId.getText(),

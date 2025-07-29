@@ -1,6 +1,5 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
-import edu.lk.ijse.projectgym.demo76promax.Dtos.CustermerDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
@@ -10,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;

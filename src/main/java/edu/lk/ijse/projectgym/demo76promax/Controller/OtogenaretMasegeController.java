@@ -1,28 +1,27 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.CustermerDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.CustormerModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CustormerManegeBO;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Properties;
 
 public class OtogenaretMasegeController {
-    private static CustormerModel custormerModel = new CustormerModel();
+   // private static CustormerModel custormerModel = new CustormerModel();
+   private CustormerManegeBO custormerManegeBO = BOFactory.getInstance().getBOTypes(BOTypes.CUSTORMERMANEGE);
 
-    public static void sendeMassegeOtomaticaly() throws SQLException, ClassNotFoundException {
-        ArrayList<CustermerDto> customers = custormerModel.getAllCustomers();
+   //public static void sendeMassegeOtomaticaly() throws SQLException, ClassNotFoundException {
+    public void sendeMassegeOtomaticaly() throws SQLException, ClassNotFoundException {
+        ArrayList<CustermerDto> customers = (ArrayList<CustermerDto>) custormerManegeBO.getrAllcustormer();
         LocalDate currentDate = LocalDate.now();
         int currentMonth = currentDate.getMonthValue();
 
@@ -56,7 +55,7 @@ public class OtogenaretMasegeController {
         }
     }
 
-    private static void sendEmailToCustomer(String customerEmail, String customerName) throws SQLException, ClassNotFoundException {
+    private  void sendEmailToCustomer(String customerEmail, String customerName) throws SQLException, ClassNotFoundException {
         EditOtoJenaretMassege editOtoJenaretMassege = new EditOtoJenaretMassege();
         String cach = editOtoJenaretMassege.getlable();
         String subject = "🎉 Special Birthday Month Offer Just for You, " + customerName + "!";

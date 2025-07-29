@@ -1,7 +1,11 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.SystemUser;
-import edu.lk.ijse.projectgym.demo76promax.Modal.Registetionmodal;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
+import edu.lk.ijse.projectgym.demo76promax.bo.Exseption.Inusedexception;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,8 +24,8 @@ public class UserManageController implements Initializable {
 
     private final String phonePattern = "^\\d{10}$";
 
-
-    private final Registetionmodal registetionmodal = new Registetionmodal();
+    private final UsermanegeBO usermanegeBO = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
+   // private final Registetionmodal registetionmodal = new Registetionmodal();
     private final SystemUser systemUser = new SystemUser();
     @FXML
     private AnchorPane ancPaneSystemUsermanegmentView;
@@ -72,7 +76,7 @@ public class UserManageController implements Initializable {
     void btnDeleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String id = lblId.getText();
 
-        if (!registetionmodal.isUserIdExists(id)) {
+        if (!usermanegeBO.isUserIdExists(id)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("ID is not available");
             alert.show();
@@ -86,7 +90,7 @@ public class UserManageController implements Initializable {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
-                    boolean isDelete = registetionmodal.deleteMember(id);
+                    boolean isDelete = usermanegeBO.delete(id);
                     if (isDelete) {
                         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
                         infoAlert.setContentText("Delete successful");
@@ -98,6 +102,7 @@ public class UserManageController implements Initializable {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setContentText("Error occurred while deleting: " + e.getMessage());
                     errorAlert.show();
+
                 }
             }
         });
@@ -135,11 +140,20 @@ public class UserManageController implements Initializable {
 
         try {
 
-            String cach = registetionmodal.savenewMember(systemUser);
+            Boolean cach1 = usermanegeBO.save(systemUser);
+          String cach = (cach1== true) ? "Save sucsessfully ✅ " : "Save Unsucsess fully !";
             Alert information = new Alert(Alert.AlertType.INFORMATION);
             information.setContentText(cach);
             loadTable();
             resetPage();
+
+        }catch(Inusedexception e){
+
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+             alert.setContentText(e.getMessage());
+             alert.show();
+
 
         } catch (Exception e) {
 
@@ -170,7 +184,7 @@ public class UserManageController implements Initializable {
         );
 
         try {
-            boolean isUpdated = registetionmodal.updateuserMethod(systemUser2);
+            boolean isUpdated = usermanegeBO.update(systemUser2);
 
             if (isUpdated) {
                 Alert informationAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -216,7 +230,8 @@ public class UserManageController implements Initializable {
 
     public void loadTable() throws SQLException, ClassNotFoundException {
 
-        ObservableList<SystemUser> cach = new Registetionmodal().getAllmethod();
+//        ObservableList<SystemUser> cach = usermanegeBO.getuserinformation();
+        ObservableList<SystemUser> cach = FXCollections.observableArrayList(usermanegeBO.getuserinformation());
 
         colId.setCellValueFactory(new PropertyValueFactory<>("user_Id"));
         colPassword.setCellValueFactory(new PropertyValueFactory<>("User_password"));
@@ -266,7 +281,7 @@ public class UserManageController implements Initializable {
     }
 
     private void loadNextId() throws SQLException, ClassNotFoundException {
-        String nextId = registetionmodal.getNextId();
+        String nextId = usermanegeBO.getNextId();
         lblId.setText(nextId);
     }
 

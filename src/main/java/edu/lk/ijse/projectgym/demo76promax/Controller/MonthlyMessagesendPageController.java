@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
 public class MonthlyMessagesendPageController {
-
+    private OtogenaretMasegeController otogenaretMasegeController = new OtogenaretMasegeController();
     public Button sendButtenId;
     public Button viewRiportId;
 
@@ -16,9 +16,9 @@ public class MonthlyMessagesendPageController {
 
 
         new Thread(() -> {
-            try {
 
-                OtogenaretMasegeController.sendeMassegeOtomaticaly();
+            try {
+                otogenaretMasegeController.sendeMassegeOtomaticaly();
 
                 Platform.runLater(() -> {
                     new Alert(Alert.AlertType.INFORMATION, "Monthly message sent successfully").show();

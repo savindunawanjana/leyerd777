@@ -1,7 +1,11 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.CustermerDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.CustormerModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CustormerManegeBO;
+import edu.lk.ijse.projectgym.demo76promax.bo.Exseption.Inusedexception;
+import edu.lk.ijse.projectgym.demo76promax.bo.Exseption.Notfoundexseption;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +27,7 @@ import java.util.ResourceBundle;
 
 public class CustomerManageController implements Initializable {
 
+    private CustormerManegeBO custormerManegeBO = BOFactory.getInstance().getBOTypes(BOTypes.CUSTORMERMANEGE);
     public AnchorPane ancpaneId;
     public HBox lblcustid;
     public TextField txtCname;
@@ -59,7 +64,7 @@ public class CustomerManageController implements Initializable {
     @FXML
     private TableColumn<CustermerDto, Double> registerfees;
 
-    private CustormerModel custormerModel = new CustormerModel();
+   // private CustormerModel custormerModel = new CustormerModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,26 +74,54 @@ public class CustomerManageController implements Initializable {
             Lodetable();
             loadNextId();
         } catch (SQLException | ClassNotFoundException e) {
+
             throw new RuntimeException(e);
+
+        }catch (Notfoundexseption e){
+            e.printStackTrace();
+//            Alert alert=new Alert(Alert.AlertType.INFORMATION,"Custormrs are not Avalable yet").show();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Custormrs are not Avalable yet");
+            alert.show();
+            alert.setTitle("INFORMATION");
+            System.out.println("run weno ");
+        }
+
+
+
+            }
+
+    public void Lodetable() throws SQLException, ClassNotFoundException,Notfoundexseption{
+
+        try {
+            ObservableList<CustermerDto> cach = FXCollections.observableArrayList(custormerManegeBO.getrAllcustormer());
+
+            CustormerId2.setCellValueFactory(new PropertyValueFactory<>("id"));
+            Custormername.setCellValueFactory(new PropertyValueFactory<>("name"));
+            custermeraddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+            contactnumber.setCellValueFactory(new PropertyValueFactory<>("cuctermerNumber"));
+            custermerbirthdayMonth.setCellValueFactory(new PropertyValueFactory<>("cuctermerBirthdayMonth"));
+            cutermerwhight.setCellValueFactory(new PropertyValueFactory<>("cuctermerWeight"));
+            custermeremailaddress.setCellValueFactory(new PropertyValueFactory<>("cuctermerEmail"));
+            registerfees.setCellValueFactory(new PropertyValueFactory<>("cuctermerRegisterFees"));
+
+            tableId.setItems(cach);
+
+        }catch (Notfoundexseption e){
+            throw new Notfoundexseption("Custormrs are not Avalable yet");
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+
         }
     }
 
-    public void Lodetable() throws SQLException, ClassNotFoundException {
-        ObservableList<CustermerDto> cach = FXCollections.observableArrayList(custormerModel.getAllCustomers());
-        CustormerId2.setCellValueFactory(new PropertyValueFactory<>("id"));
-        Custormername.setCellValueFactory(new PropertyValueFactory<>("name"));
-        custermeraddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-        contactnumber.setCellValueFactory(new PropertyValueFactory<>("cuctermerNumber"));
-        custermerbirthdayMonth.setCellValueFactory(new PropertyValueFactory<>("cuctermerBirthdayMonth"));
-        cutermerwhight.setCellValueFactory(new PropertyValueFactory<>("cuctermerWeight"));
-        custermeremailaddress.setCellValueFactory(new PropertyValueFactory<>("cuctermerEmail"));
-        registerfees.setCellValueFactory(new PropertyValueFactory<>("cuctermerRegisterFees"));
-        tableId.setItems(cach);
-    }
-
     private void loadNextId() throws SQLException, ClassNotFoundException {
-        String nextId = custormerModel.getNextId();
+
+        String nextId = custormerManegeBO.getNextId();
         lblCustomerId.setText(nextId);
+
     }
 
     private void resetPage() throws SQLException, ClassNotFoundException {
@@ -116,7 +149,7 @@ public class CustomerManageController implements Initializable {
 
     public void btnDeleteOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String id = lblCustomerId.getText();
-        if (!custormerModel.isUserIdExists(id)) {
+        if (!custormerManegeBO.isUserIdExists(id)) {
             new Alert(Alert.AlertType.ERROR, "ID is not available").show();
             return;
         }
@@ -125,7 +158,7 @@ public class CustomerManageController implements Initializable {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
-                    boolean isDelete = custormerModel.deleteCustomerById(id);
+                    boolean isDelete = custormerManegeBO.deleteCustomerById(id);
                     if (isDelete) {
                         new Alert(Alert.AlertType.INFORMATION, "Delete successful").show();
                         resetPage();
@@ -150,7 +183,7 @@ public class CustomerManageController implements Initializable {
         );
 
         try {
-            String cach = custormerModel.updateCustomer(customer);
+            String cach = custormerManegeBO.updateCustomer(customer);
             new Alert(Alert.AlertType.INFORMATION, cach).show();
             resetPage();
         } catch (Exception e) {
@@ -189,11 +222,14 @@ public class CustomerManageController implements Initializable {
             );
 
             try {
-                String cach = custormerModel.saveCustomer(customer);
+                String cach = custormerManegeBO.saveCustomer(customer);
                 new Alert(Alert.AlertType.INFORMATION, cach).show();
                 resetPage();
-            } catch (Exception e) {
-                new Alert(Alert.AlertType.ERROR, "Save Error: " + e.getMessage()).show();
+            } catch (Inusedexception e) {
+                new Alert(Alert.AlertType.ERROR, "Customer Number is already exist").show();
+            }catch (Exception e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Save Error: " + e.getMessage());
             }
         }
     }
@@ -225,5 +261,6 @@ public class CustomerManageController implements Initializable {
         ancpaneId.getChildren().clear();
         Parent parent = FXMLLoader.load(getClass().getResource("/View/CustormerDorrPayment.fxml"));
         ancpaneId.getChildren().add(parent);
+
     }
 }

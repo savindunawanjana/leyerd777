@@ -1,11 +1,12 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 
-import com.mysql.cj.protocol.Message;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.ExsaisTm;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.SelectExsaisTm;
-import edu.lk.ijse.projectgym.demo76promax.Modal.CustormerModel;
 import edu.lk.ijse.projectgym.demo76promax.Modal.ExsasaisModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CustormerManegeBO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,14 +16,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
-
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -30,7 +28,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class SendShedulToCustormerController implements Initializable {
-
+    private CustormerManegeBO custormerManegeBO = BOFactory.getInstance().getBOTypes(BOTypes.CUSTORMERMANEGE);
     public TextField txtEmail;
     public TextField txtCustomerName;
     @FXML
@@ -62,7 +60,7 @@ public class SendShedulToCustormerController implements Initializable {
     private ObservableList<SelectExsaisTm> scheduleList = FXCollections.observableArrayList();
 
     private final ExsasaisModel exsasaisModel = new ExsasaisModel();
-    private final CustormerModel custormerModel = new CustormerModel();
+  //  private final CustormerModel custormerModel = new CustormerModel();
 
     public SendShedulToCustormerController() throws SQLException, ClassNotFoundException {}
 
@@ -70,15 +68,15 @@ public class SendShedulToCustormerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
 
-            List<String> customerIds = custormerModel.getAllCustomerIds();
+            List<String> customerIds = custormerManegeBO.getAllIds();// <----------------------
             choisBoxId.getItems().addAll(customerIds);
 
 
             choisBoxId.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
                 if (newVal != null) {
                     try {
-                        String name = custormerModel.findNameById(newVal);
-                        String email = custormerModel.findEmailById(newVal);
+                        String name = custormerManegeBO.findNameById(newVal);
+                        String email = custormerManegeBO.findEmailById(newVal);
                         System.out.println(name);
                         System.out.println(email);
 

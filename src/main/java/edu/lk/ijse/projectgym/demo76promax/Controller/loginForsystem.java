@@ -1,6 +1,9 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
-import edu.lk.ijse.projectgym.demo76promax.Modal.comanPasswordmodal;
+//import edu.lk.ijse.projectgym.demo76promax.Modal.comanPasswordmodal;
+import edu.lk.ijse.projectgym.demo76promax.dao.DAOFactory;
+import edu.lk.ijse.projectgym.demo76promax.dao.custom.ComanpasswordDao;
+import edu.lk.ijse.projectgym.demo76promax.dao.util.DAOTipes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,12 +21,13 @@ public class loginForsystem {
 
     public TextField textfildloginpage;
     public AnchorPane ancpaneLoginforsystem;
-    private comanPasswordmodal comanPasswordmodal;
+    private ComanpasswordDao comanPasswordBOimpl = DAOFactory.getInstance().getDao(DAOTipes.COMMONPASSWORD);
+   // private comanPasswordmodal comanPasswordmodal;
     private String cachPassword;
 
     public loginForsystem() {
 
-        comanPasswordmodal = new comanPasswordmodal();
+       // comanPasswordmodal = new comanPasswordmodal();
 
     }
 
@@ -34,7 +38,7 @@ public class loginForsystem {
 
     public void enterButtenloginpage(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
 
-        cachPassword = comanPasswordmodal.getComanPassword(String.valueOf(textfildloginpage));
+        cachPassword = comanPasswordBOimpl.getComanPassword(String.valueOf(textfildloginpage));
         String text = textfildloginpage.getText();
 
         if (text.equals(cachPassword)) {
@@ -53,7 +57,7 @@ public class loginForsystem {
 
         if (keyEvent.getCode() == KeyCode.ENTER) {
 
-            cachPassword = comanPasswordmodal.getComanPassword(String.valueOf(textfildloginpage));
+            cachPassword = comanPasswordBOimpl.getComanPassword(String.valueOf(textfildloginpage));
             String text = textfildloginpage.getText();
 
             if (text.equals(cachPassword)) {

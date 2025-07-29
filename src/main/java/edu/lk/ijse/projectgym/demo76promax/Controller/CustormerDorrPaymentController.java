@@ -1,9 +1,10 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.memberPaymentDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.CustormerModel;
-import edu.lk.ijse.projectgym.demo76promax.Modal.MemberpaymentModal;
-import edu.lk.ijse.projectgym.demo76promax.Modal.Registetionmodal;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CustormerpaymentBO;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -17,15 +18,18 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class CustormerDorrPaymentController  implements Initializable {
+public class CustormerDorrPaymentController implements Initializable {
+    private UsermanegeBO usermanegeBO = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
+
     public AnchorPane anchorpaneid;
     public TextField textCustormerId;
     public Button buttenId;
     public TextField txtpaymentsId;
     public TextField txtNumberofMonthValidId;
 
-    private Registetionmodal rmodel= new Registetionmodal();
-    private MemberpaymentModal memberPaymentmodel = new MemberpaymentModal();
+   // private Registetionmodal rmodel = new Registetionmodal();
+    // private MemberpaymentModal memberPaymentmodel = new MemberpaymentModal();
+    private CustormerpaymentBO custormerpaymentBO = BOFactory.getInstance().getBOTypes(BOTypes.CUSTORMERDORPAYMENTS);
 
     public void OnButtenAction(ActionEvent actionEvent) {
         String customerId = textCustormerId.getText().trim();
@@ -49,7 +53,7 @@ public class CustormerDorrPaymentController  implements Initializable {
             String expayeDate = newDate.toString();
 
             String system_user_Id = loginManeger.arry[0];
-            String user_Roll = rmodel.getuserRollmethod(system_user_Id);
+            String user_Roll = usermanegeBO.getuserRollmethod(system_user_Id);
             System.out.println(user_Roll);
             memberPaymentDto dto = new memberPaymentDto(
                     customerId,
@@ -61,10 +65,10 @@ public class CustormerDorrPaymentController  implements Initializable {
             );
 
 
-            String resultMessage = memberPaymentmodel.savemethadeFromModel(dto);
+            String resultMessage = custormerpaymentBO.save(dto);
             new Alert(Alert.AlertType.INFORMATION, resultMessage, ButtonType.OK).show();
 
-            memberPaymentmodel.deleteLowerPaymentIdsPerCustomer();
+            String cach = custormerpaymentBO.deleteLowerPaymentIdsPerCustomer();
             clearMethod();
 
         } catch (NumberFormatException e) {
@@ -75,7 +79,7 @@ public class CustormerDorrPaymentController  implements Initializable {
         }
     }
 
-    public void clearMethod(){
+    public void clearMethod() {
 
         txtpaymentsId.clear();
         txtNumberofMonthValidId.clear();
@@ -83,12 +87,11 @@ public class CustormerDorrPaymentController  implements Initializable {
 
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            memberPaymentmodel.deleteLowerPaymentIdsPerCustomer();
+            String cach = custormerpaymentBO.deleteLowerPaymentIdsPerCustomer();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

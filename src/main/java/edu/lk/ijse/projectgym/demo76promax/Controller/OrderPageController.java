@@ -6,10 +6,11 @@ import edu.lk.ijse.projectgym.demo76promax.Dtos.ItemDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.OrderDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.OrderDetailsDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.CartTM;
-import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.CustomerTM;
-import edu.lk.ijse.projectgym.demo76promax.Modal.CustormerModel;
 import edu.lk.ijse.projectgym.demo76promax.Modal.ItemModel;
 import edu.lk.ijse.projectgym.demo76promax.Modal.OderModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CustormerManegeBO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,13 +19,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
-
 
 import java.net.URL;
 import java.sql.Connection;
@@ -34,7 +33,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class OrderPageController implements Initializable {
@@ -88,13 +86,13 @@ public class OrderPageController implements Initializable {
 
     //  @FXML
     // private Label orderDate;
-private CustormerModel custormerModel = new  CustormerModel();
-
+//private CustormerModel custormerModel = new  CustormerModel();
+    private CustormerManegeBO custormerManegeBO = BOFactory.getInstance().getBOTypes(BOTypes.CUSTORMERMANEGE);
     @FXML
     private TextField txtAddToCartQty;
 
     private final OderModel orderModel = new OderModel();
-    private final CustormerModel customerModel = new CustormerModel();
+    //private final CustormerModel customerModel = new CustormerModel();
     private final ItemModel itemModel = new ItemModel();
 
     private final ObservableList<CartTM> cartData = FXCollections.observableArrayList();
@@ -143,7 +141,7 @@ private CustormerModel custormerModel = new  CustormerModel();
     }
 
     private void loadCustomerIds() throws SQLException, ClassNotFoundException {
-        ArrayList<String> customerIdsList = customerModel.getAllCustomerIds();
+        ArrayList<String> customerIdsList = (ArrayList<String>) custormerManegeBO.getAllIds();// <-----------------  new line
         ObservableList<String> customerIds = FXCollections.observableArrayList();
         customerIds.addAll(customerIdsList);
         cmbCustomerId.setItems(customerIds);
@@ -370,7 +368,7 @@ private CustormerModel custormerModel = new  CustormerModel();
     @FXML
     void cmbCustomerOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String selectedId = cmbCustomerId.getSelectionModel().getSelectedItem();
-        String name = customerModel.findNameById(selectedId);
+        String name = custormerManegeBO.findNameById(selectedId);
         lblCustomerName.setText(name);
     }
 

@@ -1,7 +1,9 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.SystemUser;
-import edu.lk.ijse.projectgym.demo76promax.Modal.ownerLoginModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UserdeatilesmenuBO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,21 +19,19 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class UserDetailsMenuController implements Initializable {
 
 
     public Button btnok;
-    private ownerLoginModel ownerLoginModel;
-
+    //  private ownerLoginModel ownerLoginModel;
+    private UserdeatilesmenuBO userdeatilesmenuBO = BOFactory.getInstance().getBOTypes(BOTypes.USERDEATILESPAGE);
     public AnchorPane ancpaneloginownerForRegistetion;//ancpaneloginownerForRegistetion
     public TextField txtfild;
 
     public UserDetailsMenuController() throws SQLException, ClassNotFoundException {
-
-        ownerLoginModel = new ownerLoginModel();
 
     }
 
@@ -68,7 +68,7 @@ public class UserDetailsMenuController implements Initializable {
 
     public void login() throws SQLException, ClassNotFoundException {
         String rspPassword = "null";
-        ArrayList<SystemUser> cachobjectList = ownerLoginModel.getuserinformation();
+        List<SystemUser> cachobjectList = userdeatilesmenuBO.getuserinformation();
         String textpassword = txtfild.getText();
 
         for (int i = 0; i < cachobjectList.size(); i++) {
@@ -103,7 +103,7 @@ public class UserDetailsMenuController implements Initializable {
     }
 
     public void onKey(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
-        if(keyEvent.getCode() == KeyCode.ENTER){
+        if (keyEvent.getCode() == KeyCode.ENTER) {
             login();
         }
 

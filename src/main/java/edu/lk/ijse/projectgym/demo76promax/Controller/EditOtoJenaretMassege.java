@@ -13,7 +13,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static edu.lk.ijse.projectgym.demo76promax.Controller.OtogenaretMasegeController.sendeMassegeOtomaticaly;
+//import static edu.lk.ijse.projectgym.demo76promax.Controller.OtogenaretMasegeController.sendeMassegeOtomaticaly;
 
 public class EditOtoJenaretMassege  implements Initializable {
     private MassegeModal massegeModal= new MassegeModal();

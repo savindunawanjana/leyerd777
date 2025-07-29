@@ -4,7 +4,6 @@ import edu.lk.ijse.projectgym.demo76promax.Dtos.ItemDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.SuplayerDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.ExsaisTm;
 import edu.lk.ijse.projectgym.demo76promax.Modal.SuplayerModel;
-
 import edu.lk.ijse.projectgym.demo76promax.Modal.itemModel2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddItemsController implements Initializable {

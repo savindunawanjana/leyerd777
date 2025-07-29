@@ -1,12 +1,14 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.comanPasswordobject;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UserDoorPwuiBO;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import edu.lk.ijse.projectgym.demo76promax.Modal.comanPasswordmodal;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -15,7 +17,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class UserDoorPwController implements Initializable {
-
+    private UserDoorPwuiBO comanPasswordboimpl = BOFactory.getInstance().getBOTypes(BOTypes.USERDORPASWORD);
+    //private comanPasswordmodal comanPasswordmodal = new comanPasswordmodal();
     public AnchorPane ancpaneCommanpassword;
     public Button btnSave;
     @FXML
@@ -32,14 +35,14 @@ public class UserDoorPwController implements Initializable {
 
     public void clickSaveButton(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
-        if (textCommanpassword.getText() == null || textCommanpassword.getText().trim().isEmpty()) {
+        if(textCommanpassword.getText() == null || textCommanpassword.getText().trim().isEmpty()) {
             Alert alat = new Alert(Alert.AlertType.INFORMATION);
             alat.setContentText("textfildUserPassword is empty");
             alat.show();
 
         } else {
             String textfild = textCommanpassword.getText();
-            String cach = comanPasswordmodal.setComanPassword(textfild);
+            String cach = comanPasswordboimpl.setComanPassword(textfild);
             Alert alat = new Alert(Alert.AlertType.INFORMATION);
             alat.setContentText(cach);
             alat.show();
@@ -49,7 +52,7 @@ public class UserDoorPwController implements Initializable {
 
     public void lodetable() throws SQLException, ClassNotFoundException {
 
-        ObservableList<comanPasswordobject> list = comanPasswordmodal.getComanPasswordFromDatabases();
+        ObservableList<comanPasswordobject> list = comanPasswordboimpl.getComanPasswordFromDatabases();
         paswordColam.setCellValueFactory(new PropertyValueFactory<>("comanPassword"));
         idVewTable.setItems(list);
     }

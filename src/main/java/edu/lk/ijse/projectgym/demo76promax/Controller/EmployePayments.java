@@ -1,9 +1,10 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.employePaymentDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.MemberpaymentModal;
-import edu.lk.ijse.projectgym.demo76promax.Modal.Registetionmodal;
 import edu.lk.ijse.projectgym.demo76promax.Modal.employePaymentModal;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -21,10 +22,10 @@ import java.util.ResourceBundle;
 public class EmployePayments implements Initializable {
 
 
-    private Registetionmodal registModel = new Registetionmodal();
+  //  private Registetionmodal registModel = new Registetionmodal();
     // private employePaymentDto employePaymentDto = new employePaymentDto();
     private employePaymentModal employePaymentModal = new employePaymentModal();
-
+    private UsermanegeBO systemusermanegeBo = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
 
     public AnchorPane anchorPane;
     public TextField txtsalaryId;
@@ -70,7 +71,7 @@ public class EmployePayments implements Initializable {
     public void on_butten_save_action(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
         String system_user_Id = loginManeger.arry[0];
-        String Useroll = registModel.getuserRollmethod(system_user_Id);
+        String Useroll = systemusermanegeBo.getuserRollmethod(system_user_Id);
         LocalDate currentDate = LocalDate.now();
         String formattedDate = currentDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 

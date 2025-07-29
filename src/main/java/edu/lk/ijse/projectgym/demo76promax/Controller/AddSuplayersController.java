@@ -1,7 +1,5 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
-import com.sun.source.tree.CaseLabelTree;
-import edu.lk.ijse.projectgym.demo76promax.Dtos.CustermerDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.SuplayerDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.SuplayerModel;
 import javafx.collections.FXCollections;
@@ -15,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddSuplayersController implements Initializable {

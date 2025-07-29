@@ -3,7 +3,9 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
-import edu.lk.ijse.projectgym.demo76promax.Modal.Registetionmodal;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class Addcleaner implements Initializable {
     private EmployeDto employeDto;
-    private Registetionmodal registModel = new Registetionmodal();
+    //private Registetionmodal registModel = new Registetionmodal();
     private EmployeModal employeModal = new EmployeModal();
 
     private final String idPattern = "^W.*$";
@@ -37,7 +39,7 @@ public class Addcleaner implements Initializable {
     public TextField poneNumber;
     public TextField cleaner_name;
     public Button butten;
-
+    private UsermanegeBO usermanegeBO = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
     private EmployeedataModel employeedataModel = new EmployeedataModel();
 
     public void saveMethod() throws SQLException, ClassNotFoundException {
@@ -71,7 +73,7 @@ public class Addcleaner implements Initializable {
 
         employeedataModel.shouldBeRunThisMethod();
         String system_user_Id = loginManeger.arry[0];
-        String useroll = registModel.getuserRollmethod(system_user_Id);
+        String useroll = usermanegeBO.getuserRollmethod(system_user_Id);
         LocalDate today = LocalDate.now();
         String date = today.toString();
 

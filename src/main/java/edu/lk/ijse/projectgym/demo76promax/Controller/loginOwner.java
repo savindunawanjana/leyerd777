@@ -1,7 +1,9 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.SystemUser;
-import edu.lk.ijse.projectgym.demo76promax.Modal.ownerLoginModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UserdeatilesmenuBO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,19 +26,18 @@ public class loginOwner implements Initializable {
 
     public Button btnok;
     private String rspPassword = "null";
-    private ownerLoginModel ownerLoginModel;
+    //private ownerLoginModel ownerLoginModel;
+    private UserdeatilesmenuBO userdeatilesmenuBO = BOFactory.getInstance().getBOTypes(BOTypes.USERDEATILESPAGE);
     public AnchorPane ancpaneloginowner;
     public TextField TFSBuild;
 
-    public loginOwner() throws SQLException, ClassNotFoundException {
-        ownerLoginModel = new ownerLoginModel();
-    }
+    public loginOwner() throws SQLException, ClassNotFoundException {}
 
     public void textfildAction(ActionEvent actionEvent) {
     }
 
     public void clickbottun(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
-        ArrayList<SystemUser> cachobjectList = ownerLoginModel.getuserinformation();
+        ArrayList<SystemUser> cachobjectList = (ArrayList<SystemUser>) userdeatilesmenuBO.getuserinformation();
         String textpassword = TFSBuild.getText();
         loginManeger.arry[0] = textpassword;
 
@@ -68,7 +69,7 @@ public class loginOwner implements Initializable {
 
     public void onkeyPresd(KeyEvent keyEvent) throws SQLException, ClassNotFoundException, IOException {
 
-        ArrayList<SystemUser> cachobjectList = ownerLoginModel.getuserinformation();
+        ArrayList<SystemUser> cachobjectList = (ArrayList<SystemUser>) userdeatilesmenuBO.getuserinformation();
         String textpassword = TFSBuild.getText();
         loginManeger.arry[0] = textpassword;
 
