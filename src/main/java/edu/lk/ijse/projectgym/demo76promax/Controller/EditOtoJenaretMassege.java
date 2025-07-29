@@ -1,6 +1,5 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
-import edu.lk.ijse.projectgym.demo76promax.Modal.MassegeModal;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

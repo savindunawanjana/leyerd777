@@ -2,9 +2,6 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.DeleteClenerDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.DeleteClenerModel;
-import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
-import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

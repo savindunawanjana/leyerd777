@@ -1,7 +1,6 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeeDataDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
 import edu.lk.ijse.projectgym.demo76promax.Util.CoachScheduleGenerator;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

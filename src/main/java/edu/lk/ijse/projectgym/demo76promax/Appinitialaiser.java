@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static edu.lk.ijse.projectgym.demo76promax.Controller.OtogenaretMasegeController.sendeMassegeOtomaticaly;
+//import static edu.lk.ijse.projectgym.demo76promax.Controller.OtogenaretMasegeController.sendeMassegeOtomaticaly;
 
 public class Appinitialaiser extends Application {
 
