@@ -1,6 +1,7 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.SuplayerDto;
+import edu.lk.ijse.projectgym.demo76promax.Modal.SuplayerModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

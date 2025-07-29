@@ -6,6 +6,8 @@ import edu.lk.ijse.projectgym.demo76promax.Dtos.ItemDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.OrderDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.OrderDetailsDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.CartTM;
+import edu.lk.ijse.projectgym.demo76promax.Modal.ItemModel;
+import edu.lk.ijse.projectgym.demo76promax.Modal.OderModel;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CustormerManegeBO;

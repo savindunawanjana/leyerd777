@@ -3,6 +3,7 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.ExsaisDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.ExsaisTm;
+import edu.lk.ijse.projectgym.demo76promax.Modal.ExsasaisModel;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;

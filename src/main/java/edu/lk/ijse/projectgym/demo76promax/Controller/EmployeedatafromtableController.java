@@ -1,6 +1,8 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeeDataDto;
+import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
+import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
