@@ -21,9 +21,9 @@ public class BOFactory {
     public <T extends SuperBO> T getBOTypes(BOTypes botypes) {
 
         return switch (botypes) {
-            case ADDCOACH -> (T) new AddcoachBOImpl();
+            case SAVECOACH -> (T) new CoachsaveBOimpl();
             case CUSTORMERDEATILESMENU -> (T) new CustomerDetailsMenuBOImpl();
-//            case ADDCLEANER -> (T) new AddcleanerBOImpl();
+            case SAVECLEANER -> (T) new ClenerSaveBOimpl();
 //            case ADDITEMS -> (T) new AdditemsBOImpl();
 //            case ADDSUPLAYERS -> (T) new AddsuplayersBOImpl();
             case CUSTORMERMANEGE -> (T)new CustormerManegeBOImpl();

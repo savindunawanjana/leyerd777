@@ -2,8 +2,8 @@ package edu.lk.ijse.projectgym.demo76promax.bo;
 
 public enum BOTypes {
 
-    ADDCOACH,
-//    ADDCLEANER,
+    SAVECOACH,
+    SAVECLEANER,
 //    ADDITEMS,
 //    ADDSUPLAYERS,
     CUSTORMERDEATILESMENU,

@@ -1,6 +1,8 @@
 package edu.lk.ijse.projectgym.demo76promax.Dtos;
 import lombok.*;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -12,7 +14,7 @@ public class EmployeDto {
     private String Name;
     private String cnumber;
     private String systemUserId;
-    private String date;
+    private Date date;
     private String email;
 
 

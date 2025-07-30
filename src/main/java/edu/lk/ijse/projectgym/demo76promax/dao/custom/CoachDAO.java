@@ -7,4 +7,5 @@ import java.sql.SQLException;
 
 public interface CoachDAO extends CrudDAO<Coach> {
     String findById(String coach1) throws SQLException, ClassNotFoundException;
+    int setlableCoachCount() throws SQLException, ClassNotFoundException;
 }

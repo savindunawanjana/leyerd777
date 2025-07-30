@@ -19,7 +19,7 @@ public class EmployeModal{
         stmt.setString(2, dto.getName());
         stmt.setString(3, dto.getCnumber());
         stmt.setString(4, dto.getSystemUserId());
-        stmt.setString(5, dto.getDate());
+        stmt.setDate(5, (Date) dto.getDate());
         stmt.setString(6, dto.getEmail());
 
         int result = stmt.executeUpdate();
@@ -38,7 +38,7 @@ public class EmployeModal{
             stmt.setString(2, dto.getName());
             stmt.setString(3, dto.getCnumber());
             stmt.setString(4, dto.getSystemUserId());
-            stmt.setString(5, dto.getDate());
+            stmt.setString(5, String.valueOf(dto.getDate()));
             stmt.setString(6, dto.getEmail());
 
             int result = stmt.executeUpdate();
@@ -71,46 +71,46 @@ public class EmployeModal{
     }
 
     // Get all coaches
-    public ObservableList<EmployeDto> getAllCoaches() throws SQLException, ClassNotFoundException {
-        ObservableList<EmployeDto> list = FXCollections.observableArrayList();
-        Connection connection = Dbconnection.getObject().getConnection();
-        String sql = "SELECT * FROM coaches";
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
+//    public ObservableList<EmployeDto> getAllCoaches() throws SQLException, ClassNotFoundException {
+//        ObservableList<EmployeDto> list = FXCollections.observableArrayList();
+//        Connection connection = Dbconnection.getObject().getConnection();
+//        String sql = "SELECT * FROM coaches";
+//        Statement stmt = connection.createStatement();
+//        ResultSet rs = stmt.executeQuery(sql);
+//
+//        while (rs.next()) {
+//            list.add(new EmployeDto(
+//                    rs.getString("coach_id"),
+//                    rs.getString("coach_name"),
+//                    rs.getString("coach_number"),
+//                    rs.getString("system_user_Roll"),
+//                    rs.getString("add_date"),
+//                    rs.getString("email")
+//            ));
+//        }
+//        return list;
+//    }
 
-        while (rs.next()) {
-            list.add(new EmployeDto(
-                    rs.getString("coach_id"),
-                    rs.getString("coach_name"),
-                    rs.getString("coach_number"),
-                    rs.getString("system_user_Roll"),
-                    rs.getString("add_date"),
-                    rs.getString("email")
-            ));
-        }
-        return list;
-    }
-
-    // Get all workers (cleaners, receptionists, etc.)
-    public ObservableList<EmployeDto> getAllWorkers() throws SQLException, ClassNotFoundException {
-        ObservableList<EmployeDto> list = FXCollections.observableArrayList();
-        Connection connection = Dbconnection.getObject().getConnection();
-        String sql = "SELECT * FROM worker";
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
-
-        while (rs.next()) {
-            list.add(new EmployeDto(
-                    rs.getString("worker_id"),
-                    rs.getString("worker_name"),
-                    rs.getString("worker_number"),
-                    rs.getString("system_user_Roll"),
-                    rs.getString("add_date"),
-                    rs.getString("email")
-            ));
-        }
-        return list;
-    }
+//     Get all workers (cleaners, receptionists, etc.)
+//    public ObservableList<EmployeDto> getAllWorkers() throws SQLException, ClassNotFoundException {
+//        ObservableList<EmployeDto> list = FXCollections.observableArrayList();
+//        Connection connection = Dbconnection.getObject().getConnection();
+//        String sql = "SELECT * FROM worker";
+//        Statement stmt = connection.createStatement();
+//        ResultSet rs = stmt.executeQuery(sql);
+//
+//        while (rs.next()) {
+//            list.add(new EmployeDto(
+//                    rs.getString("worker_id"),
+//                    rs.getString("worker_name"),
+//                    rs.getString("worker_number"),
+//                    rs.getString("system_user_Roll"),
+//                    rs.getString("add_date"),
+//                    rs.getString("email")
+//            ));
+//        }
+//        return list;
+//    }
 
 
     public int setlableCoachCount() throws SQLException, ClassNotFoundException {

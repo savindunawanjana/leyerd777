@@ -3,6 +3,7 @@ package edu.lk.ijse.projectgym.demo76promax.dao.custom.impl;
 import edu.lk.ijse.projectgym.demo76promax.Dbconnection.Dbconnection;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.dao.custom.CoachDAO;
+import edu.lk.ijse.projectgym.demo76promax.dao.util.SQLUtil;
 import edu.lk.ijse.projectgym.demo76promax.entity.Coach;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -88,5 +89,20 @@ public class CoachDAOImpl implements CoachDAO {
     @Override
     public String findNameById(String Id) throws ClassNotFoundException, SQLException {
         return "";
+    }
+
+    @Override
+    public int setlableCoachCount() throws SQLException, ClassNotFoundException {
+
+        Connection connection = Dbconnection.getObject().getConnection();
+        String sql = "SELECT COUNT(*) AS employee_count FROM coaches";
+        ResultSet resultSet = SQLUtil.execute(sql);
+
+        if (resultSet.next()) {
+            return resultSet.getInt("employee_count");
+        }
+        return 0;
+
+
     }
 }

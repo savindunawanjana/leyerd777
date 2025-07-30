@@ -5,6 +5,10 @@ import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.DeleteClenerModel;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeeManegeFirstpageBO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DeleteClener implements Initializable {
@@ -27,6 +32,7 @@ public class DeleteClener implements Initializable {
     public TableView tableView;
     public TextField txtRisonId;
     private EmployeModal employeModal = new EmployeModal();
+    private EmployeeManegeFirstpageBO employeeManegeFirstpageBO= BOFactory.getInstance().getBOTypes(BOTypes.EMPLOYEEMANEGEFIRSTPAGE);
 
     private final String idPattern = "^W.*$";
 
@@ -116,7 +122,9 @@ public class DeleteClener implements Initializable {
 
     public void loadCleanerTable() throws SQLException, ClassNotFoundException {
         employeedataModel.shouldBeRunThisMethod();
-        ObservableList<EmployeDto> cleaner = empModal.getAllWorkers();
+       //
+              List<EmployeDto>workerListt = employeeManegeFirstpageBO.getworkerdata();
+        ObservableList<EmployeDto> cleaner = FXCollections.observableArrayList(workerListt);
         colClenerId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         colClenerName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         tableView.setItems(cleaner);

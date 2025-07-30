@@ -2,11 +2,12 @@ package edu.lk.ijse.projectgym.demo76promax.bo.Custom;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeeDataDto;
+import edu.lk.ijse.projectgym.demo76promax.bo.SuperBO;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface EmployeeManegeFirstpageBO {
+public interface EmployeeManegeFirstpageBO extends SuperBO {
 
     // methana worker kiyanne cleners lata save karanne cleners lage deatiles
 

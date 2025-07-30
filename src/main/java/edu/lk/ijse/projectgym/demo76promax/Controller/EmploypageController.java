@@ -68,11 +68,10 @@ public class EmploypageController  implements Initializable {
 
     @FXML
     private TableColumn<EmployeDto, String> colamCochNumber;
-    private EmployeModal empModal=new EmployeModal();
+   // private EmployeModal empModal=new EmployeModal();
     private EmployeeManegeFirstpageBO employeeManegeFirstpageBO=BOFactory.getInstance().getBOTypes(BOTypes.EMPLOYEEMANEGEFIRSTPAGE);
 
     public void loadCoachTable() throws SQLException, ClassNotFoundException {
-
 
         List<EmployeDto> coacheslist = employeeManegeFirstpageBO.getcoachdata();
         ObservableList<EmployeDto> coaches= FXCollections.observableArrayList(coacheslist);
@@ -89,13 +88,15 @@ public class EmploypageController  implements Initializable {
 
     public void loadCleanerTable() throws SQLException, ClassNotFoundException {
 
-        ObservableList<EmployeDto>cleaner = empModal.getAllWorkers();
-
+       //
+                List<EmployeDto> wokerslist =employeeManegeFirstpageBO.getworkerdata();
+        ObservableList<EmployeDto>cleaner =FXCollections.observableArrayList(wokerslist);
         colamCleanerId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         colamCleanerName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         colamCleanerNumber.setCellValueFactory(new PropertyValueFactory<>("cnumber"));
         colamCleanerSystemuser.setCellValueFactory(new PropertyValueFactory<>("systemUserId"));
         colamCleanerEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        System.out.println("hellooooo//");
 
         tableCleaners.setItems(cleaner);
 
@@ -104,8 +105,8 @@ public class EmploypageController  implements Initializable {
      public void setEmployeeCountTotheLable() throws SQLException, ClassNotFoundException {
 
 
-         lblCochesCount1.setText(String.valueOf(empModal.setlableCoachCount()));
-         lblCleanersCount1.setText(String.valueOf(empModal.setlableCleanerCount()));
+         lblCochesCount1.setText(String.valueOf(employeeManegeFirstpageBO.setlableCoachCount()));
+         lblCleanersCount1.setText(String.valueOf(employeeManegeFirstpageBO.setlableCleanerCount()));
 
 
 

@@ -3,6 +3,10 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeeManegeFirstpageBO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +17,10 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
+
+//import static jdk.internal.org.jline.reader.impl.LineReaderImpl.CompletionType.List;
 
 public class DeleteCocher implements Initializable {
 
@@ -25,6 +32,7 @@ public class DeleteCocher implements Initializable {
     @FXML
     private TableColumn<EmployeDto, String> ColCoachName;
 
+    private EmployeeManegeFirstpageBO employeeManegeFirstpageBO= BOFactory.getInstance().getBOTypes(BOTypes.EMPLOYEEMANEGEFIRSTPAGE);
 
     private EmployeModal employeModal = new EmployeModal();
     public AnchorPane AnchorPane;
@@ -40,11 +48,13 @@ public class DeleteCocher implements Initializable {
         lblCoachCount.setText(rsp + "");
         textFildId.clear();
         loadCocherTable();
-
     }
 
     public void loadCocherTable() throws SQLException, ClassNotFoundException {
-        ObservableList<EmployeDto> cleaner = employeModal.getAllCoaches();
+        //ObservableList<EmployeDto> cleaner =
+
+              List<EmployeDto>emplist =employeeManegeFirstpageBO.getcoachdata();
+        ObservableList<EmployeDto> cleaner = FXCollections.observableArrayList(emplist);
         colCochId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         ColCoachName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         tblView.setItems(cleaner);

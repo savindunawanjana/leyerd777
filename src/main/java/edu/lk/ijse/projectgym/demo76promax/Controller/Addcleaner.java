@@ -21,6 +21,8 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class Addcleaner implements Initializable {
@@ -75,14 +77,15 @@ public class Addcleaner implements Initializable {
         String system_user_Id = loginManeger.arry[0];
         String useroll = usermanegeBO.getuserRollmethod(system_user_Id);
         LocalDate today = LocalDate.now();
-        String date = today.toString();
+       // String date = today.toString();
+        Date date1 = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant()); // ← this is a java.util.Date now
 
         employeDto = new EmployeDto(
                 cleanerId.getText(),
                 cleaner_name.getText(),
                 poneNumber.getText(),
                 useroll,
-                date,
+                date1,
                 emailaddress.getText());
 
         if (isvalidid && isValidEmail && isValidPhone && isValidName) {
