@@ -1,12 +1,14 @@
 package edu.lk.ijse.projectgym.demo76promax.dao.custom.impl;
 
 import edu.lk.ijse.projectgym.demo76promax.Dbconnection.Dbconnection;
+import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.dao.custom.CoachDAO;
 import edu.lk.ijse.projectgym.demo76promax.entity.Coach;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CoachDAOImpl implements CoachDAO {
@@ -18,7 +20,23 @@ public class CoachDAOImpl implements CoachDAO {
 
     @Override
     public List<Coach> getAll() throws ClassNotFoundException, SQLException {
-        return List.of();
+       List<Coach> list = new ArrayList<>();
+        Connection connection = Dbconnection.getObject().getConnection();
+        String sql = "SELECT * FROM coaches";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+
+        while (rs.next()) {
+            list.add(new Coach(
+                    rs.getString("coach_id"),
+                    rs.getString("coach_name"),
+                    rs.getString("coach_number"),
+                    rs.getString("system_user_Roll"),
+                    rs.getDate("add_date"),
+                    rs.getString("email")
+            ));
+        }
+        return list;
     }
 
     @Override

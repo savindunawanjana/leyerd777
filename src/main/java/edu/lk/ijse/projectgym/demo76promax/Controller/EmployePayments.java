@@ -21,7 +21,6 @@ import java.util.ResourceBundle;
 
 public class EmployePayments implements Initializable {
 
-
   //  private Registetionmodal registModel = new Registetionmodal();
     // private employePaymentDto employePaymentDto = new employePaymentDto();
     private employePaymentModal employePaymentModal = new employePaymentModal();

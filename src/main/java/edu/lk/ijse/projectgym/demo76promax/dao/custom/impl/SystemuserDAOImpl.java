@@ -94,7 +94,7 @@ public class SystemuserDAOImpl implements SystemuserDAO {
     public Boolean finduserByponeNumber(String number) throws ClassNotFoundException, SQLException{
 
         Connection connection = Dbconnection.getObject().getConnection();
-        String sql="SELECT * FROM system_user WHERE user_phone_number = ?";
+        String sql="SELECT * FROM system_user WHERE  phone_number= ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, number);
 

@@ -36,7 +36,7 @@ public class BOFactory {
 //            case EMPLOYEEDATAFROMATABLE -> (T) new EmployeeDataFromTableBOImpl();
 //            case EMPLOYEEPAYMENTS -> (T) new EmployeePaymentsBOImpl();
 //            case EMPLOYEEPAGEDEATILES -> (T) new EmployeePageDetailsBOImpl();
-//            case EMPLOYEEPAGE -> (T) new EmployeePageBOImpl();
+            case EMPLOYEEMANEGEFIRSTPAGE -> (T) new EmployeeManegeFirstpageBOimpl();
 //            case INVENTORYPAGE -> (T) new InventoryPageBOImpl();
 //            case LOGINFORSYSTEM -> (T) new LoginForSystemBOImpl();
 //            case LOGINMANEGER -> (T) new LoginManagerBOImpl();

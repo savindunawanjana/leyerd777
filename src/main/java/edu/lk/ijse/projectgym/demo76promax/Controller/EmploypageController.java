@@ -2,6 +2,11 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeeManegeFirstpageBO;
+import edu.lk.ijse.projectgym.demo76promax.dao.custom.CoachDAO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmploypageController  implements Initializable {
@@ -63,11 +69,13 @@ public class EmploypageController  implements Initializable {
     @FXML
     private TableColumn<EmployeDto, String> colamCochNumber;
     private EmployeModal empModal=new EmployeModal();
-
+    private EmployeeManegeFirstpageBO employeeManegeFirstpageBO=BOFactory.getInstance().getBOTypes(BOTypes.EMPLOYEEMANEGEFIRSTPAGE);
 
     public void loadCoachTable() throws SQLException, ClassNotFoundException {
 
-        ObservableList<EmployeDto> coaches = empModal.getAllCoaches();
+
+        List<EmployeDto> coacheslist = employeeManegeFirstpageBO.getcoachdata();
+        ObservableList<EmployeDto> coaches= FXCollections.observableArrayList(coacheslist);
 
         colamCochId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
         colamCoachName.setCellValueFactory(new PropertyValueFactory<>("Name"));
