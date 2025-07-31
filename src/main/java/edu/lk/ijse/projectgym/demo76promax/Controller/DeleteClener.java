@@ -8,6 +8,7 @@ import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeeManegeFirstpageBO;
+import edu.lk.ijse.projectgym.demo76promax.dao.util.Publicforcoachandclener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,10 +47,11 @@ public class DeleteClener implements Initializable {
     public TextField cleanerId;
     public Button btnsave;
     private EmployeModal empModal = new EmployeModal();
-    private EmployeedataModel employeedataModel = new EmployeedataModel();
+    //private EmployeedataModel employeedataModel = new EmployeedataModel();
 
     public void saveButten_On_action(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        employeedataModel.shouldBeRunThisMethod();
+        //employeedataModel
+        Publicforcoachandclener.shouldBeRunThisMethod();
         deleteClener();
         loadCleanerTable();
         cleanerId.clear();
@@ -121,7 +123,8 @@ public class DeleteClener implements Initializable {
     }
 
     public void loadCleanerTable() throws SQLException, ClassNotFoundException {
-        employeedataModel.shouldBeRunThisMethod();
+       // employeedataModel
+        Publicforcoachandclener.shouldBeRunThisMethod();
        //
               List<EmployeDto>workerListt = employeeManegeFirstpageBO.getworkerdata();
         ObservableList<EmployeDto> cleaner = FXCollections.observableArrayList(workerListt);

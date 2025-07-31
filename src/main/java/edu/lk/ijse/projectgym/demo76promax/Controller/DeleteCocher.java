@@ -6,6 +6,7 @@ import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeeManegeFirstpageBO;
+import edu.lk.ijse.projectgym.demo76promax.dao.util.Publicforcoachandclener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,11 +39,12 @@ public class DeleteCocher implements Initializable {
     public AnchorPane AnchorPane;
     public Button buttenId;
     public TextField textFildId;
-    private EmployeedataModel employeedataModel = new EmployeedataModel();
+    //private EmployeedataModel employeedataModel = new EmployeedataModel();
 
     public void delete_butten_on_action(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
-        employeedataModel.shouldBeRunThisMethod();
+       // employeedataModel
+        Publicforcoachandclener.shouldBeRunThisMethod();
         employeModal.deleteCoach(textFildId.getText());
         int rsp = employeModal.setlableCoachCount();
         lblCoachCount.setText(rsp + "");

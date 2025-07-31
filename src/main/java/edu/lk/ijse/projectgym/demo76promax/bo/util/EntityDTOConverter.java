@@ -28,12 +28,17 @@ public class EntityDTOConverter {
 
 
     public Coach getCoachEntity(EmployeDto dto) {
+        System.out.println("//////////////////////////////////hallo/////////////");
+       // System.out.println( (Date) dto.getDate());
+        System.out.println(dto.getDate());
+        System.out.println("/////////////////////////////////halll//////////////");
+
         Coach coach = new Coach(
                 dto.getEmployeeId(),
                 dto.getName(),
                 dto.getCnumber(),
                 dto.getSystemUserId(),
-                (Date) dto.getDate(),
+                dto.getDate(),
                 dto.getEmail()
         );
         return coach;

@@ -70,7 +70,7 @@ public class CoachDAOImpl implements CoachDAO {
             stmt.setString(2, coach.getName());
             stmt.setString(3, coach.getContactNumber());
             stmt.setString(4, coach.getSystemUserRole());
-            stmt.setString(5, String.valueOf(coach.getAddDate()));
+            stmt.setDate(5, coach.getAddDate());
             stmt.setString(6, coach.getEmail());
 
             int result = stmt.executeUpdate();

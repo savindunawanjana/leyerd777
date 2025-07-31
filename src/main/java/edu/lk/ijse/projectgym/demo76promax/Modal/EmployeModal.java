@@ -10,45 +10,45 @@ import java.sql.*;
 
 public class EmployeModal{
 
-    // Save worker (cleaner, receptionist, etc.)
-    public String saveWorker(EmployeDto dto) throws SQLException, ClassNotFoundException {
-        Connection connection = Dbconnection.getObject().getConnection();
-        String sql = "INSERT INTO worker(worker_id, worker_name, worker_number, system_user_Roll,add_date, email) VALUES (?, ?, ?, ?, ?, ?)";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, dto.getEmployeeId());
-        stmt.setString(2, dto.getName());
-        stmt.setString(3, dto.getCnumber());
-        stmt.setString(4, dto.getSystemUserId());
-        stmt.setDate(5, (Date) dto.getDate());
-        stmt.setString(6, dto.getEmail());
+//    // Save worker (cleaner, receptionist, etc.)
+//    public String saveWorker(EmployeDto dto) throws SQLException, ClassNotFoundException {
+//        Connection connection = Dbconnection.getObject().getConnection();
+//        String sql = "INSERT INTO worker(worker_id, worker_name, worker_number, system_user_Roll,add_date, email) VALUES (?, ?, ?, ?, ?, ?)";
+//        PreparedStatement stmt = connection.prepareStatement(sql);
+//        stmt.setString(1, dto.getEmployeeId());
+//        stmt.setString(2, dto.getName());
+//        stmt.setString(3, dto.getCnumber());
+//        stmt.setString(4, dto.getSystemUserId());
+//        stmt.setDate(5, (Date) dto.getDate());
+//        stmt.setString(6, dto.getEmail());
+//
+//        int result = stmt.executeUpdate();
+//        return result > 0 ? "Saved successfully" : "Not saved";
+//    }
 
-        int result = stmt.executeUpdate();
-        return result > 0 ? "Saved successfully" : "Not saved";
-    }
-
-    // Save coach
-    public String saveCoach(EmployeDto dto) throws SQLException, ClassNotFoundException {
-        try {
-
-
-            Connection connection = Dbconnection.getObject().getConnection();
-            String sql = "INSERT INTO coaches(coach_id, coach_name, coach_number, system_user_Roll,add_date,email) VALUES (?, ?, ?, ?, ?,?)";
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, dto.getEmployeeId());
-            stmt.setString(2, dto.getName());
-            stmt.setString(3, dto.getCnumber());
-            stmt.setString(4, dto.getSystemUserId());
-            stmt.setString(5, String.valueOf(dto.getDate()));
-            stmt.setString(6, dto.getEmail());
-
-            int result = stmt.executeUpdate();
-            return result > 0 ? "Saved successfully" : "Not saved";
-        }catch (SQLException e){
-            e.printStackTrace();
-            return e.getMessage();
-
-        }
-    }
+//    // Save coach
+//    public String saveCoach(EmployeDto dto) throws SQLException, ClassNotFoundException {
+//        try {
+//
+//
+//            Connection connection = Dbconnection.getObject().getConnection();
+//            String sql = "INSERT INTO coaches(coach_id, coach_name, coach_number, system_user_Roll,add_date,email) VALUES (?, ?, ?, ?, ?,?)";
+//            PreparedStatement stmt = connection.prepareStatement(sql);
+//            stmt.setString(1, dto.getEmployeeId());
+//            stmt.setString(2, dto.getName());
+//            stmt.setString(3, dto.getCnumber());
+//            stmt.setString(4, dto.getSystemUserId());
+//            stmt.setString(5, String.valueOf(dto.getDate()));
+//            stmt.setString(6, dto.getEmail());
+//
+//            int result = stmt.executeUpdate();
+//            return result > 0 ? "Saved successfully" : "Not saved";
+//        }catch (SQLException e){
+//            e.printStackTrace();
+//            return e.getMessage();
+//
+//        }
+//    }
 
     // Delete worker
     public String deleteWorker(String workerId) throws SQLException, ClassNotFoundException {

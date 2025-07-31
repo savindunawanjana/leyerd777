@@ -3,6 +3,7 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeeDataDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
+import edu.lk.ijse.projectgym.demo76promax.dao.util.Publicforcoachandclener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -75,7 +76,8 @@ private EmployeedataModel  employeedataModel=new EmployeedataModel();
 
         try {
             setlableMethod();
-            employeedataModel.shouldBeRunThisMethod();
+          //  employeedataModel
+            Publicforcoachandclener.shouldBeRunThisMethod();
             lodetable();
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);

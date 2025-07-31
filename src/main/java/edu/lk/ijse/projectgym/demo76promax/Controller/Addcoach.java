@@ -5,7 +5,9 @@ import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CoachsaveBO;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
+import edu.lk.ijse.projectgym.demo76promax.dao.util.Publicforcoachandclener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,18 +22,21 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.sql.Date;
 import java.util.ResourceBundle;
+
 
 public class Addcoach implements Initializable {
   //  private SystemuserDAO systemuserDAO = DAOFactory.getInstance().getDao(DAOTipes.SYSTEMUSER);
     private UsermanegeBO usermanegeBO = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
+    private CoachsaveBO coachsaveBO =BOFactory.getInstance().getBOTypes(BOTypes.SAVECOACH);
     private EmployeDto employeDto;
    // private Registetionmodal registModel = new Registetionmodal();
-    private EmployeModal employeModal = new EmployeModal();
+   // private EmployeModal employeModal = new EmployeModal();
 
 
 
@@ -42,13 +47,14 @@ public class Addcoach implements Initializable {
     public TextField coachNumber;
     public Button btnsave;
 
-    private EmployeedataModel employeedataModel= new EmployeedataModel();
+   // private EmployeedataModel employeedataModel= new EmployeedataModel();
     private static final String VALID_STYLE = "-fx-border-color: green; -fx-background-color: #dcdde1;";
     private static final String INVALID_STYLE = "-fx-border-color: red; -fx-background-color: #dcdde1;";
     private static final String DEFAULT_STYLE = "-fx-border-color: #000000; -fx-background-color: #dcdde1;";
 
     public void buttenONaction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        employeedataModel.shouldBeRunThisMethod();
+
+        Publicforcoachandclener.shouldBeRunThisMethod();
         saveMethod();
         textcoachId.clear();
         textcoachName.clear();
@@ -65,33 +71,31 @@ public class Addcoach implements Initializable {
             return;
         }
 
-        employeedataModel.shouldBeRunThisMethod();
+        Publicforcoachandclener.shouldBeRunThisMethod();
 
-        LocalDate today = LocalDate.now();
-        String date = today.toString();
+        LocalDate localDate = LocalDate.now();
+        Date sqlDate = Date.valueOf(localDate);
 
         String system_user_Id = loginManeger.arry[0];
         String useroll = usermanegeBO.getuserRollmethod(system_user_Id);
-
-        Date utilDate = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-
 
         employeDto = new EmployeDto(
                 textcoachId.getText(),
                 textcoachName.getText(),
                 coachNumber.getText(),
                 useroll,
-                utilDate,
+                sqlDate,
                 coachEmailadressId.getText());
 
-        employeModal.saveCoach(employeDto);
-        new Alert(Alert.AlertType.INFORMATION, "Coach saved successfully!", ButtonType.OK).show();
+        String cach =coachsaveBO.saveCoach(employeDto);
+
+        new Alert(Alert.AlertType.INFORMATION, cach, ButtonType.OK).show();
     }
 
     public void on_key_presd(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
 
-        employeedataModel.shouldBeRunThisMethod();
+       // employeedataModel
+        Publicforcoachandclener.shouldBeRunThisMethod();
         System.out.println("Key pressed: " + keyEvent.getCode());
 
         if(keyEvent.getCode() == KeyCode.ENTER){
@@ -136,7 +140,9 @@ public class Addcoach implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         javafx.application.Platform.runLater(() -> {
             try {
-                employeedataModel.shouldBeRunThisMethod();
+                //System.out.println(utilDate);
+               // employeedataModel
+                Publicforcoachandclener.shouldBeRunThisMethod();
                 setupValidations();
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);

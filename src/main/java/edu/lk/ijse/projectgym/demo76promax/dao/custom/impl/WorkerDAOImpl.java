@@ -8,10 +8,7 @@ import edu.lk.ijse.projectgym.demo76promax.entity.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 public class WorkerDAOImpl implements WorkerDAO {
@@ -49,7 +46,18 @@ public class WorkerDAOImpl implements WorkerDAO {
 
     @Override
     public Boolean save(Worker worker) throws ClassNotFoundException, SQLException {
-        return null;
+        Connection connection = Dbconnection.getObject().getConnection();
+        String sql = "INSERT INTO worker(worker_id, worker_name, worker_number, system_user_Roll,add_date, email) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, worker.getWorkerId());
+        stmt.setString(2, worker.getName());
+        stmt.setString(3, worker.getContactNumber());
+        stmt.setString(4, worker.getSystemUserRole());
+        stmt.setDate(5, worker.getAddDate());
+        stmt.setString(6, worker.getEmail());
+
+        int result = stmt.executeUpdate();
+        return result > 0 ? true : false;
     }
 
     @Override

@@ -5,7 +5,9 @@ import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.ClenerSaveBO;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
+import edu.lk.ijse.projectgym.demo76promax.dao.util.Publicforcoachandclener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,17 +21,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class Addcleaner implements Initializable {
     private EmployeDto employeDto;
-    //private Registetionmodal registModel = new Registetionmodal();
-    private EmployeModal employeModal = new EmployeModal();
 
+private ClenerSaveBO clenerSaveBO = BOFactory.getInstance().getBOTypes(BOTypes.SAVECLEANER);
     private final String idPattern = "^W.*$";
     private final String nicPattern = "^[0-9]{9}[vVxX]||[0-9]{12}$";
     private final String emailPattern = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
@@ -42,7 +43,6 @@ public class Addcleaner implements Initializable {
     public TextField cleaner_name;
     public Button butten;
     private UsermanegeBO usermanegeBO = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
-    private EmployeedataModel employeedataModel = new EmployeedataModel();
 
     public void saveMethod() throws SQLException, ClassNotFoundException {
         String id = cleanerId.getText();
@@ -73,31 +73,31 @@ public class Addcleaner implements Initializable {
             cleaner_name.setStyle("-fx-border-color: red;");
         }
 
-        employeedataModel.shouldBeRunThisMethod();
+        Publicforcoachandclener.shouldBeRunThisMethod();
         String system_user_Id = loginManeger.arry[0];
         String useroll = usermanegeBO.getuserRollmethod(system_user_Id);
-        LocalDate today = LocalDate.now();
-       // String date = today.toString();
-        Date date1 = Date.from(today.atStartOfDay(ZoneId.systemDefault()).toInstant()); // ← this is a java.util.Date now
+        LocalDate localDate = LocalDate.now();
+        java.sql.Date sqlDate = Date.valueOf(localDate);
 
         employeDto = new EmployeDto(
                 cleanerId.getText(),
                 cleaner_name.getText(),
                 poneNumber.getText(),
                 useroll,
-                date1,
+                sqlDate,
                 emailaddress.getText());
 
         if (isvalidid && isValidEmail && isValidPhone && isValidName) {
-            employeModal.saveWorker(employeDto);
-            new Alert(Alert.AlertType.INFORMATION, "Data saved successfully!").show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Please check the highlighted fields").show();
+            String cachrsp = clenerSaveBO.saveWorker(employeDto);
+            new Alert(Alert.AlertType.INFORMATION, cachrsp).show();
         }
+        //else {
+//            new Alert(Alert.AlertType.ERROR, "Please check the highlighted fields").show();
+//        }
     }
 
     public void butten_on_action(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        employeedataModel.shouldBeRunThisMethod();
+                Publicforcoachandclener.shouldBeRunThisMethod();
         saveMethod();
         cleanerId.clear();
         emailaddress.clear();
@@ -123,7 +123,8 @@ public class Addcleaner implements Initializable {
     }
 
     public void on_key_presd(KeyEvent keyEvent) throws SQLException, ClassNotFoundException {
-        employeedataModel.shouldBeRunThisMethod();
+
+        Publicforcoachandclener.shouldBeRunThisMethod();
         System.out.println("Key pressed: " + keyEvent.getCode());
         if (keyEvent.getCode() == KeyCode.ENTER) {
             saveMethod();
@@ -139,7 +140,8 @@ public class Addcleaner implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         javafx.application.Platform.runLater(() -> {
             try {
-                employeedataModel.shouldBeRunThisMethod();
+
+                Publicforcoachandclener.shouldBeRunThisMethod();
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

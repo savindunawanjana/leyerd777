@@ -1,7 +1,7 @@
 package edu.lk.ijse.projectgym.demo76promax.Dtos;
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
