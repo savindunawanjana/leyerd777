@@ -2,10 +2,9 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.DeleteClenerDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.DeleteClenerModel;
-import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.ClenerdeleteBO;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeeManegeFirstpageBO;
 import edu.lk.ijse.projectgym.demo76promax.dao.util.Publicforcoachandclener;
 import javafx.collections.FXCollections;
@@ -26,14 +25,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class DeleteClener implements Initializable {
-    private DeleteClenerModel model = new DeleteClenerModel();
-    private DeleteClenerDto deleteClenerDto;
+    //private DeleteClenerModel model = new DeleteClenerModel();
+  //  private DeleteClenerDto deleteClenerDto;
     public AnchorPane anchorpaneDeletCleaner;
     public TableView tableView;
     public TextField txtRisonId;
-    private EmployeModal employeModal = new EmployeModal();
+    //private EmployeModal employeModal = new EmployeModal();
 
-  //  private Wor employeeManegeFirstpageBO= BOFactory.getInstance().getBOTypes(BOTypes.EMPLOYEEMANEGEFIRSTPAGE);
+    private ClenerdeleteBO clenerdeleteBO= BOFactory.getInstance().getBOTypes(BOTypes.DELETECLENER);
     private EmployeeManegeFirstpageBO employeeManegeFirstpageBO= BOFactory.getInstance().getBOTypes(BOTypes.EMPLOYEEMANEGEFIRSTPAGE);
 
     private final String idPattern = "^W.*$";
@@ -85,7 +84,7 @@ public class DeleteClener implements Initializable {
                 return;
             }
 
-            String name = employeModal.findNameByIds(id);
+            String name = clenerdeleteBO.findNameByIds(id);
             if (name == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -97,19 +96,19 @@ public class DeleteClener implements Initializable {
 
             LocalDate todayDate = LocalDate.now();
             String date = todayDate.toString();
-
-            deleteClenerDto = new DeleteClenerDto(
+//loginManeger.arry[0],
+            DeleteClenerDto deleteClenerDto1 = new DeleteClenerDto(
                     id,
                     name,
                     date,
-                    loginManeger.arry[0],
+                    "user",
                     reason
             );
 
-            boolean saved = model.saveDeleteCleaner(deleteClenerDto);
+            boolean saved = clenerdeleteBO.saveDeleteCleaner(deleteClenerDto1);
             Alert alert;
             if (saved) {
-                employeModal.deleteWorker(id);
+                clenerdeleteBO.delete(id);
                 alert = new Alert(Alert.AlertType.INFORMATION, "Delete successful.");
             } else {
                 alert = new Alert(Alert.AlertType.ERROR, "Delete failed.");

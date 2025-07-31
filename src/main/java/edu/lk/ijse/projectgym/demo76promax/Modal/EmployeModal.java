@@ -1,4 +1,4 @@
-package edu.lk.ijse.projectgym.demo76promax.Modal;
+//package edu.lk.ijse.projectgym.demo76promax.Modal;
 
 import edu.lk.ijse.projectgym.demo76promax.Dbconnection.Dbconnection;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 
-public class EmployeModal{
+//public class EmployeModal{
 
 //    // Save worker (cleaner, receptionist, etc.)
 //    public String saveWorker(EmployeDto dto) throws SQLException, ClassNotFoundException {
@@ -51,24 +51,24 @@ public class EmployeModal{
 //    }
 
     // Delete worker
-    public String deleteWorker(String workerId) throws SQLException, ClassNotFoundException {
-        Connection connection = Dbconnection.getObject().getConnection();
-        String sql = "DELETE FROM worker WHERE worker_id = ?";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, workerId);
-        int result = stmt.executeUpdate();
-        return result > 0 ? "Deleted successfully" : "No matching worker to delete";
-    }
+//    public String deleteWorker(String workerId) throws SQLException, ClassNotFoundException {
+//        Connection connection = Dbconnection.getObject().getConnection();
+//        String sql = "DELETE FROM worker WHERE worker_id = ?";
+//        PreparedStatement stmt = connection.prepareStatement(sql);
+//        stmt.setString(1, workerId);
+//        int result = stmt.executeUpdate();
+//        return result > 0 ? "Deleted successfully" : "No matching worker to delete";
+//    }
 
     // Delete coach
-    public String deleteCoach(String coachId) throws SQLException, ClassNotFoundException {
-        Connection connection = Dbconnection.getObject().getConnection();
-        String sql = "DELETE FROM coaches WHERE coach_id = ?";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, coachId);
-        int result = stmt.executeUpdate();
-        return result > 0 ? "Deleted successfully" : "No matching coach to delete";
-    }
+//    public String deleteCoach(String coachId) throws SQLException, ClassNotFoundException {
+//        Connection connection = Dbconnection.getObject().getConnection();
+//        String sql = "DELETE FROM coaches WHERE coach_id = ?";
+//        PreparedStatement stmt = connection.prepareStatement(sql);
+//        stmt.setString(1, coachId);
+//        int result = stmt.executeUpdate();
+//        return result > 0 ? "Deleted successfully" : "No matching coach to delete";
+//    }
 
     // Get all coaches
 //    public ObservableList<EmployeDto> getAllCoaches() throws SQLException, ClassNotFoundException {
@@ -162,26 +162,26 @@ public class EmployeModal{
 //        return name;
 //    }
 
-    public String findNameByIds(String id) throws SQLException, ClassNotFoundException {
-        String name = "";
+//    public String findNameByIds(String id) throws SQLException, ClassNotFoundException {
+//        String name = "";
+//
+//        String sql = "SELECT worker_name FROM worker WHERE worker_id = ?";
+//
+//        try (
+//                Connection connection = Dbconnection.getObject().getConnection();
+//                PreparedStatement stmt = connection.prepareStatement(sql)
+//        ) {
+//            stmt.setString(1, id);
+//            try (ResultSet resultSet = stmt.executeQuery()) {
+//                if (resultSet.next()) {
+//                    name = resultSet.getString("worker_name");
+//                }
+//            }
+//        }
+//
+//        return name;
+//    }
 
-        String sql = "SELECT worker_name FROM worker WHERE worker_id = ?";
-
-        try (
-                Connection connection = Dbconnection.getObject().getConnection();
-                PreparedStatement stmt = connection.prepareStatement(sql)
-        ) {
-            stmt.setString(1, id);
-            try (ResultSet resultSet = stmt.executeQuery()) {
-                if (resultSet.next()) {
-                    name = resultSet.getString("worker_name");
-                }
-            }
-        }
-
-        return name;
-    }
 
 
-
-}
+//}

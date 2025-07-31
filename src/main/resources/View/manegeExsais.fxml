@@ -9,12 +9,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorPane" maxWidth="1088.0" prefHeight="851.0" prefWidth="1088.0" style="-fx-background-color: #dff9fb; -fx-border-radius: 10; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lk.ijse.projectgym.demo76promax.Controller.ManegeExsaisController">
+<AnchorPane fx:id="AnchorPane" maxWidth="1105.0" prefHeight="841.0" prefWidth="1105.0" style="-fx-background-color: #dff9fb; -fx-border-radius: 10; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.lk.ijse.projectgym.demo76promax.Controller.ManegeExsaisController">
     <VBox layoutX="5.0" prefHeight="771.0" prefWidth="1385.0" spacing="30.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
       <Label alignment="CENTER" layoutX="20.0" prefHeight="71.0" prefWidth="1368.0" text="Manege Exercise">
          <font>
@@ -50,10 +49,9 @@
 
         <!-- Buttons -->
         <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="1100.0" spacing="15">
-         <Pane prefHeight="736.0" prefWidth="1340.0" />
-            <Button fx:id="btnAdd" onAction="#btnAddOnAction" prefHeight="26.0" prefWidth="46.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Add" />
-            <Button fx:id="btnUpdate" onAction="#btnUpdateOnAction" style="-fx-background-color: #f1c40f; -fx-text-fill: white;" text="Update" />
-            <Button fx:id="btnDelete" onAction="#btnDeleteOnAction" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Delete" />
+            <Button fx:id="btnAdd" onAction="#btnAddOnAction" prefHeight="28.0" prefWidth="105.0" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Add" />
+            <Button fx:id="btnUpdate" onAction="#btnUpdateOnAction" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #f1c40f; -fx-text-fill: white;" text="Update" />
+            <Button fx:id="btnDelete" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Delete" />
         </HBox>
 
         <!-- TableView -->

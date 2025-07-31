@@ -18,21 +18,21 @@ public class ExsasaisModel {
 
     }
 
-    public String saveMethod(ExsaisDto dto) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO manage_exercises(id, name, category, system_user_id) VALUES (?, ?, ?, ?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, dto.getId());
-        preparedStatement.setString(2, dto.getExsaisName());
-        preparedStatement.setString(3, dto.getExsaisCategory());
-        preparedStatement.setString(4, dto.getSystemUserid());  // <-- use systemUserid here!
-
-        int i = preparedStatement.executeUpdate();
-        if (i > 0) {
-            return "Successfully saved";
-        } else {
-            return "Failed to save";
-        }
-    }
+//    public String saveMethod(ExsaisDto dto) throws SQLException, ClassNotFoundException {
+//        String sql = "INSERT INTO manage_exercises(id, name, category, system_user_id) VALUES (?, ?, ?, ?)";
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.setInt(1, dto.getId());
+//        preparedStatement.setString(2, dto.getExsaisName());
+//        preparedStatement.setString(3, dto.getExsaisCategory());
+//        preparedStatement.setString(4, dto.getSystemUserid());  // <-- use systemUserid here!
+//
+//        int i = preparedStatement.executeUpdate();
+//        if (i > 0) {
+//            return "Successfully saved";
+//        } else {
+//            return "Failed to save";
+//        }
+//    }
 
 
     public String deleteMethod(String Id) throws SQLException, ClassNotFoundException {

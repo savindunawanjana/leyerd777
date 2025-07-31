@@ -1,10 +1,11 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
+//import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CoachdeleteBO;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeeManegeFirstpageBO;
 import edu.lk.ijse.projectgym.demo76promax.dao.util.Publicforcoachandclener;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class DeleteCocher implements Initializable {
 
+    private CoachdeleteBO coachdeleteBO = BOFactory.getInstance().getBOTypes(BOTypes.DELETECOACH);
     public Label lblCoachCount;
     public TableView tblView;
     @FXML
@@ -34,7 +36,7 @@ public class DeleteCocher implements Initializable {
 
     private EmployeeManegeFirstpageBO employeeManegeFirstpageBO= BOFactory.getInstance().getBOTypes(BOTypes.EMPLOYEEMANEGEFIRSTPAGE);
 
-    private EmployeModal employeModal = new EmployeModal();
+  //  private EmployeModal employeModal = new EmployeModal();
     public AnchorPane AnchorPane;
     public Button buttenId;
     public TextField textFildId;
@@ -44,7 +46,9 @@ public class DeleteCocher implements Initializable {
 
        // employeedataModel
         Publicforcoachandclener.shouldBeRunThisMethod();
-        employeModal.deleteCoach(textFildId.getText());
+        String rsp =coachdeleteBO.deleteCoach(textFildId.getText());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, rsp);
+        alert.show();
        // int rsp = employeModal.setlableCoachCount();
         //lblCoachCount.setText(rsp + "");
         textFildId.clear();

@@ -72,7 +72,21 @@ public class WorkerDAOImpl implements WorkerDAO {
 
     @Override
     public String findNameById(String Id) throws ClassNotFoundException, SQLException {
-        return "";
+        String name = "";
+
+        String sql = "SELECT worker_name FROM worker WHERE worker_id = ?";
+
+
+                Connection connection = Dbconnection.getObject().getConnection();
+                PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1, Id);
+            ResultSet resultSet = stmt.executeQuery();
+                if (resultSet.next()) {
+                    name = resultSet.getString("worker_name");
+        }
+
+        return name;
     }
 
     @Override

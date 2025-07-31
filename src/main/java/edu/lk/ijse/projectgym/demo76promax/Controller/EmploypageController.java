@@ -1,7 +1,7 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
+//import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeeManegeFirstpageBO;

@@ -1,31 +1,92 @@
 package edu.lk.ijse.projectgym.demo76promax.dao.custom.impl;
 
+import edu.lk.ijse.projectgym.demo76promax.Dbconnection.Dbconnection;
+import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.ExsaisTm;
 import edu.lk.ijse.projectgym.demo76promax.dao.custom.ManegeExsersaisDAO;
 import edu.lk.ijse.projectgym.demo76promax.entity.ManegeExercise;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManegeexsersaisDAOImpl implements ManegeExsersaisDAO {
 
     @Override
     public List<ManegeExercise> getAll() throws ClassNotFoundException, SQLException {
-        return List.of();
+        List<ExsaisTm> list = new ArrayList();
+        connection = Dbconnection.getObject().getConnection();
+        String sql = "SELECT * FROM manage_exercises";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        ExsaisTm exsaistm;
+
+        while (resultSet.next()) {
+            exsaistm = new ExsaisTm(
+
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("category"),
+                    resultSet.getString("added_date"),
+                    resultSet.getString("system_user_id")
+            );
+
+            list.add(exsaistm);
+        }
+
+        return list;
     }
 
     @Override
     public Boolean delete(String id) throws ClassNotFoundException, SQLException {
-        return null;
+        Connection connection1 = Dbconnection.getObject().getConnection();
+        String sql = "DELETE FROM manage_exercises WHERE id=?";
+        PreparedStatement preparedStatement = connection1.prepareStatement(sql);
+        preparedStatement.setString(1, id);
+        int i = preparedStatement.executeUpdate();
+        if (i > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public Boolean update(ManegeExercise manegeExercise) throws ClassNotFoundException, SQLException {
-        return null;
+        Connection connection = Dbconnection.getObject().getConnection();
+        String sql = "UPDATE manage_exercises SET  name=?,category=? WHERE id=? ";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, manegeExercise.getExerciseName());
+        preparedStatement.setString(2, manegeExercise.getCategory());
+
+        preparedStatement.setInt(3, manegeExercise.getExerciseId());
+        int i = preparedStatement.executeUpdate();
+        if (i > 0) {
+            return  true;
+        } else {
+            return  false ;
+        }
     }
 
     @Override
     public Boolean save(ManegeExercise manegeExercise) throws ClassNotFoundException, SQLException {
-        return null;
+        Connection connection = Dbconnection.getObject().getConnection();
+        String sql = "INSERT INTO manage_exercises(id, name, category, system_user_id) VALUES (?, ?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setInt(1, manegeExercise.getExerciseId());
+        preparedStatement.setString(2, manegeExercise.getExerciseName());
+        preparedStatement.setString(3, manegeExercise.getCategory());
+        preparedStatement.setString(4, manegeExercise.getSystemUserId());  // <-- use systemUserid here!
+
+        int i = preparedStatement.executeUpdate();
+        if (i > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
