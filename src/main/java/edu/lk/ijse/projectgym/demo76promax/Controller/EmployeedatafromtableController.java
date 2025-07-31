@@ -2,8 +2,11 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeeDataDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
-import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployedeatilesmanegementBO;
 import edu.lk.ijse.projectgym.demo76promax.dao.util.Publicforcoachandclener;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmployeedatafromtableController  implements Initializable {
@@ -39,14 +43,15 @@ public class EmployeedatafromtableController  implements Initializable {
     public Label lblCleanerCount;
     public Label lbltodayIsCoachCome;
     public Label lbltodayIsCleanerCome;
-    private  EmployeModal employeedataModal=new EmployeModal();
-private EmployeedataModel  employeedataModel=new EmployeedataModel();
-
+  //s  private  EmployeModal employeedataModal=new EmployeModal();
+//private EmployeedataModel  employeedataModel=new EmployeedataModel();
+private EmployedeatilesmanegementBO employedeatilesmanegementBO = BOFactory.getInstance().getBOTypes(BOTypes.EMPLOYEEDATAFROMATABLE);
 
     public void lodetable() throws SQLException, ClassNotFoundException {
 
-
-            ObservableList<EmployeeDataDto> list = employeedataModel.getallMethod();
+//            ObservableList<EmployeeDataDto> list =
+                         List<EmployeeDataDto> employeeDataDtoList =employedeatilesmanegementBO.getallMethod();
+                         ObservableList<EmployeeDataDto> list = FXCollections.observableArrayList(employeeDataDtoList);
             colId.setCellValueFactory(new PropertyValueFactory<>("id"));
             colname.setCellValueFactory(new PropertyValueFactory<>("name"));
             colNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
@@ -56,19 +61,15 @@ private EmployeedataModel  employeedataModel=new EmployeedataModel();
 
         }
 
-
         public void setlableMethod() throws SQLException, ClassNotFoundException {
 
 
-            String coachCount = String.valueOf(employeedataModal.setlableCoachCount());
-            String cleaner = String.valueOf(employeedataModal.setlableCleanerCount());
+            String coachCount = String.valueOf(employedeatilesmanegementBO.setlableCoachCount());
+            String cleaner = String.valueOf(employedeatilesmanegementBO.setlableCleanerCount());
             lblCoachCount.setText(coachCount);
             lblCleanerCount.setText(cleaner);
 
-
-
         }
-
 
 
     @Override

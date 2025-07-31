@@ -1,6 +1,5 @@
 package edu.lk.ijse.projectgym.demo76promax.Dtos;
 
-
 import lombok.*;
 
 @AllArgsConstructor
@@ -16,6 +15,15 @@ public class EmployeeDataDto {
     private String role ;
     private String email;
 
+//    public EmployeeDataDto (String employeeId,String name, String number, String rolle, String email) {
+//
+//       this.id=employeeId;
+//       this.name=name;
+//       this.number=number;
+//       this.role=rolle;
+//       this.email=email;
+//    }
+//
 
     public EmployeeDataDto (String employeeId, String rolle, String name) {
 
@@ -23,17 +31,6 @@ public class EmployeeDataDto {
         this.role = rolle;
         this.name= name;
     }
-
-//
-//    public class EmployeeAttendanceDto {
-//        private String employeeId;
-//        private String name;
-//        private String role;
-//        private String attendanceDate;
-//        private String status; // e.g., "Present", "Absent", "Late", "Half Day"
-//    }
-
-
 
 
 

@@ -2,7 +2,11 @@ package edu.lk.ijse.projectgym.demo76promax.bo.util;
 
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
+import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeeDataDto;
+import edu.lk.ijse.projectgym.demo76promax.Dtos.employePaymentDto;
 import edu.lk.ijse.projectgym.demo76promax.entity.Coach;
+import edu.lk.ijse.projectgym.demo76promax.entity.EmployeePayments;
+import edu.lk.ijse.projectgym.demo76promax.entity.EmployeeTable;
 import edu.lk.ijse.projectgym.demo76promax.entity.Worker;
 
 import java.sql.Date;
@@ -28,10 +32,6 @@ public class EntityDTOConverter {
 
 
     public Coach getCoachEntity(EmployeDto dto) {
-        System.out.println("//////////////////////////////////hallo/////////////");
-       // System.out.println( (Date) dto.getDate());
-        System.out.println(dto.getDate());
-        System.out.println("/////////////////////////////////halll//////////////");
 
         Coach coach = new Coach(
                 dto.getEmployeeId(),
@@ -72,4 +72,70 @@ public class EntityDTOConverter {
             );
             return worker;
         }
+
+
+        public EmployeeTable getEntytyemp(EmployeeDataDto employeeDataDto){
+
+            EmployeeTable employeeTable =new EmployeeTable(
+
+                    employeeDataDto.getId(),
+                    employeeDataDto.getName(),
+                    employeeDataDto.getNumber(),
+                    employeeDataDto.getRole(),
+                    employeeDataDto.getEmail()
+
+            );
+        return employeeTable;
+
+        }
+
+
+    public EmployeeDataDto  getDtoemp(EmployeeTable employeeTable){
+
+        EmployeeDataDto employeeDataDto = new EmployeeDataDto(
+
+                employeeTable.getEmployeeId(),
+                employeeTable.getEmployeeName(),
+                employeeTable.getEmployeeContact(),
+                employeeTable.getEmployeeRole(),
+                employeeTable.getEmployeeEmail()
+        );
+
+
+        return employeeDataDto;
+
+    }
+
+     public employePaymentDto getemployeepaymentDto(EmployeePayments employeePayments){
+
+         employePaymentDto employePaymentDto = new employePaymentDto();
+         employePaymentDto.setSystem_user_id(employeePayments.getSystemUserRoll());
+         employePaymentDto.setEmployee_roll(employeePayments.getEmployeeRole());
+         employePaymentDto.setEmployee_Id(employeePayments.getEmployeeId());
+         employePaymentDto.setDate(String.valueOf(employeePayments.getPaymentDate()));
+         employePaymentDto.setSalary(employeePayments.getSalary());
+
+          return employePaymentDto;
+
+
+     }
+
+    public EmployeePayments getemployeepaymentEntyty(employePaymentDto employeepaymentDto){
+
+        EmployeePayments employeePayments = new EmployeePayments(
+
+                employeepaymentDto.getSystem_user_id(),
+                employeepaymentDto.getEmployee_roll(),
+                employeepaymentDto.getEmployee_Id(),
+                employeepaymentDto.getDate(),
+                employeepaymentDto.getSalary()
+        );
+
+
+        return employeePayments;
+
+    }
+
+
+
 }

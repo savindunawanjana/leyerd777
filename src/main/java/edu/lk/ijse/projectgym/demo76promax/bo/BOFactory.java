@@ -33,8 +33,8 @@ public class BOFactory {
 //            case DELETECOACH -> (T) new DeleteCoachBOImpl();
 //            case EDITEOTOJENARETMASSEGE -> (T) new EditAutoGenerateMessageBOImpl();
 //            case EMPLOYEEATENDENS -> (T) new EmployeeAttendanceBOImpl();
-//            case EMPLOYEEDATAFROMATABLE -> (T) new EmployeeDataFromTableBOImpl();
-//            case EMPLOYEEPAYMENTS -> (T) new EmployeePaymentsBOImpl();
+            case EMPLOYEEDATAFROMATABLE -> (T) new EmployedeatilesmanegementBOimpl();
+           case EMPLOYEEPAYMENTS -> (T) new EmployeePaymentmanegementBOimpl();
 //            case EMPLOYEEPAGEDEATILES -> (T) new EmployeePageDetailsBOImpl();
             case EMPLOYEEMANEGEFIRSTPAGE -> (T) new EmployeeManegeFirstpageBOimpl();
 //            case INVENTORYPAGE -> (T) new InventoryPageBOImpl();

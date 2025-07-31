@@ -10,10 +10,10 @@ import java.sql.Date;
 @Data
 
 public class EmployeePayments {
-    private String paymentId;
+//    private String paymentId;
     private String systemUserRoll;
     private String employeeRole;
     private String employeeId;
-    private Date paymentDate;
-    private BigDecimal salary;
+    private String paymentDate;
+    private Double salary;
 }

@@ -1,10 +1,14 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.employePaymentDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.employePaymentModal;
+
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeePaymentmanegementBO;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.UsermanegeBO;
+import edu.lk.ijse.projectgym.demo76promax.dao.DAOFactory;
+import edu.lk.ijse.projectgym.demo76promax.dao.custom.EmployeePaymentsDAO;
+import edu.lk.ijse.projectgym.demo76promax.dao.util.DAOTipes;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -23,7 +27,8 @@ public class EmployePayments implements Initializable {
 
   //  private Registetionmodal registModel = new Registetionmodal();
     // private employePaymentDto employePaymentDto = new employePaymentDto();
-    private employePaymentModal employePaymentModal = new employePaymentModal();
+   // private employePaymentModal employePaymentModal = new employePaymentModal();
+  private EmployeePaymentmanegementBO employeePaymentmanegementBO = BOFactory.getInstance().getBOTypes(BOTypes.EMPLOYEEPAYMENTS);
     private UsermanegeBO systemusermanegeBo = BOFactory.getInstance().getBOTypes(BOTypes.USERMANEGE);
 
     public AnchorPane anchorPane;
@@ -36,7 +41,7 @@ public class EmployePayments implements Initializable {
 
     public void on_buttenSerch_action(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
-        String rsp = employePaymentModal.searchEmployeePaymentsById(txtemployId.getText());
+        String rsp = employeePaymentmanegementBO.searchEmployeePaymentsById(txtemployId.getText());
         System.out.println(rsp + " <--");
         lblemployeShow.setText(rsp);
 
@@ -57,7 +62,7 @@ public class EmployePayments implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            employePaymentModal.searchEmployeePaymentsById(txtemployId.getText());
+            employeePaymentmanegementBO.searchEmployeePaymentsById(txtemployId.getText());
         } catch (Exception e) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -86,7 +91,11 @@ public class EmployePayments implements Initializable {
 
         );
 
-        Boolean a = employePaymentModal.saveMethod1(employdto);
+        String information = employeePaymentmanegementBO.saveMethod1(employdto);
+        Alert alert = new  Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setContentText(information);
+        alert.show();
         textfildclearmethod();
 
 

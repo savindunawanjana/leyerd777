@@ -113,54 +113,54 @@ public class EmployeModal{
 //    }
 
 
-    public int setlableCoachCount() throws SQLException, ClassNotFoundException {
+//    public int setlableCoachCount() throws SQLException, ClassNotFoundException {
+//
+//        Connection connection = Dbconnection.getObject().getConnection();
+//        String sql = "SELECT COUNT(*) AS employee_count FROM coaches";
+//        ResultSet resultSet = SQLUtil.execute(sql);
+//
+//        if (resultSet.next()) {
+//            return resultSet.getInt("employee_count");
+//        }
+//        return 0;
+//
+//
+//    }
+//
+//    public int setlableCleanerCount() throws SQLException, ClassNotFoundException {
+//
+//        Connection connection = Dbconnection.getObject().getConnection();
+//        String sql = "SELECT COUNT(*) AS employee_count FROM worker";
+//       // String sql = "SELECT COUNT(*) AS employee_count FROM coaches";
+//        ResultSet resultSet = SQLUtil.execute(sql);
+//
+//        if (resultSet.next()) {
+//            return resultSet.getInt("employee_count");
+//        }
+//        return 0;
+//
+//
+//    }
 
-        Connection connection = Dbconnection.getObject().getConnection();
-        String sql = "SELECT COUNT(*) AS employee_count FROM coaches";
-        ResultSet resultSet = SQLUtil.execute(sql);
-
-        if (resultSet.next()) {
-            return resultSet.getInt("employee_count");
-        }
-        return 0;
-
-
-    }
-
-    public int setlableCleanerCount() throws SQLException, ClassNotFoundException {
-
-        Connection connection = Dbconnection.getObject().getConnection();
-        String sql = "SELECT COUNT(*) AS employee_count FROM worker";
-       // String sql = "SELECT COUNT(*) AS employee_count FROM coaches";
-        ResultSet resultSet = SQLUtil.execute(sql);
-
-        if (resultSet.next()) {
-            return resultSet.getInt("employee_count");
-        }
-        return 0;
-
-
-    }
-
-    public String findNameById(String id) throws SQLException, ClassNotFoundException {
-        String name = "";
-
-        String sql = "SELECT customer_name FROM customer WHERE customer_id = ?";
-
-        try (
-                Connection connection = Dbconnection.getObject().getConnection();
-                PreparedStatement stmt = connection.prepareStatement(sql)
-        ) {
-            stmt.setString(1, id);
-            try (ResultSet resultSet = stmt.executeQuery()) {
-                if (resultSet.next()) {
-                    name = resultSet.getString("name");
-                }
-            }
-        }
-
-        return name;
-    }
+//    public String findNameById(String id) throws SQLException, ClassNotFoundException {
+//        String name = "";
+//
+//        String sql = "SELECT customer_name FROM customer WHERE customer_id = ?";
+//
+//        try (
+//                Connection connection = Dbconnection.getObject().getConnection();
+//                PreparedStatement stmt = connection.prepareStatement(sql)
+//        ) {
+//            stmt.setString(1, id);
+//            try (ResultSet resultSet = stmt.executeQuery()) {
+//                if (resultSet.next()) {
+//                    name = resultSet.getString("name");
+//                }
+//            }
+//        }
+//
+//        return name;
+//    }
 
     public String findNameByIds(String id) throws SQLException, ClassNotFoundException {
         String name = "";

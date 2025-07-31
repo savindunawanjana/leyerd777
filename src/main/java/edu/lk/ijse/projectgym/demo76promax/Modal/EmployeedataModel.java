@@ -11,29 +11,29 @@ import java.sql.*;
 public class EmployeedataModel {
 
 
-    public ObservableList<EmployeeDataDto> getallMethod() throws SQLException, ClassNotFoundException {
-
-
-        ObservableList<EmployeeDataDto> oblist = FXCollections.observableArrayList();
-        Connection connection = Dbconnection.getObject().getConnection();
-        EmployeeDataDto employeeDataDto;
-        String sql = "SELECT ALL * FROM  employees_table";
-
-        ResultSet resultSet = SQLUtil.execute(sql);
-
-        while (resultSet.next()) {
-            employeeDataDto = new EmployeeDataDto(
-
-                    resultSet.getString("id"),
-                    resultSet.getString("name"),
-                    resultSet.getString("number"),
-                    resultSet.getString("email"),
-                    resultSet.getString("role")
-            );
-            oblist.add(employeeDataDto);
-        }
-        return oblist;
-    }
+//    public ObservableList<EmployeeDataDto> getallMethod() throws SQLException, ClassNotFoundException {
+//
+//
+//        ObservableList<EmployeeDataDto> oblist = FXCollections.observableArrayList();
+//        Connection connection = Dbconnection.getObject().getConnection();
+//        EmployeeDataDto employeeDataDto;
+//        String sql = "SELECT ALL * FROM  employees_table";
+//
+//        ResultSet resultSet = SQLUtil.execute(sql);
+//
+//        while (resultSet.next()) {
+//            employeeDataDto = new EmployeeDataDto(
+//
+//                    resultSet.getString("id"),
+//                    resultSet.getString("name"),
+//                    resultSet.getString("number"),
+//                    resultSet.getString("email"),
+//                    resultSet.getString("role")
+//            );
+//            oblist.add(employeeDataDto);
+//        }
+//        return oblist;
+//    }
 
 //    public Boolean shouldBeRunThisMethod() throws SQLException, ClassNotFoundException {
 //
@@ -61,6 +61,7 @@ public class EmployeedataModel {
 //
 //    }
 
+//mee pahala 2s use wenne employee atendans ekee ==>
 
     public ObservableList<EmployeeDataDto> SerchMethod(String id1, String id2) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM employees_table WHERE id IN (?, ?)";

@@ -44,8 +44,8 @@ public class CoachDAOImpl implements CoachDAO {
     public Boolean delete(String id) throws ClassNotFoundException, SQLException {
 
         String sql = "DELETE FROM coaches WHERE coach_id=?";
-        try (Connection connection = Dbconnection.getObject().getConnection();
-             PreparedStatement stm = connection.prepareStatement(sql)) {
+        try {Connection connection = Dbconnection.getObject().getConnection();
+             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, id);
             int result = stm.executeUpdate();
             return result > 0 ? true : false;

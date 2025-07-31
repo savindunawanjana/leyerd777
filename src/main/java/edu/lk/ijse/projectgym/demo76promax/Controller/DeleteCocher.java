@@ -2,7 +2,7 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.EmployeDto;
 import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeModal;
-import edu.lk.ijse.projectgym.demo76promax.Modal.EmployeedataModel;
+
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EmployeeManegeFirstpageBO;
@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -46,8 +45,8 @@ public class DeleteCocher implements Initializable {
        // employeedataModel
         Publicforcoachandclener.shouldBeRunThisMethod();
         employeModal.deleteCoach(textFildId.getText());
-        int rsp = employeModal.setlableCoachCount();
-        lblCoachCount.setText(rsp + "");
+       // int rsp = employeModal.setlableCoachCount();
+        //lblCoachCount.setText(rsp + "");
         textFildId.clear();
         loadCocherTable();
     }
@@ -63,13 +62,12 @@ public class DeleteCocher implements Initializable {
 
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            int rsp = employeModal.setlableCoachCount();
-            lblCoachCount.setText(rsp + "");
+          //  int rsp = employeModal.setlableCoachCount();
+            //lblCoachCount.setText(rsp + "");
             loadCocherTable();
         } catch (SQLException e) {
 

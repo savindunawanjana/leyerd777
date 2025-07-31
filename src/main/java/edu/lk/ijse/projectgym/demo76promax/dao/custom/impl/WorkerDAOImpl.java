@@ -36,7 +36,12 @@ public class WorkerDAOImpl implements WorkerDAO {
 
     @Override
     public Boolean delete(String id) throws ClassNotFoundException, SQLException {
-        return null;
+        Connection connection = Dbconnection.getObject().getConnection();
+        String sql = "DELETE FROM worker WHERE worker_id = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, id);
+        int result = stmt.executeUpdate();
+        return result > 0;
     }
 
     @Override
