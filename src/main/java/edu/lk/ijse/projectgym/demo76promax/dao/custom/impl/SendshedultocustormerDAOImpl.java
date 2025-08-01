@@ -1,12 +1,12 @@
 package edu.lk.ijse.projectgym.demo76promax.dao.custom.impl;
 
-import edu.lk.ijse.projectgym.demo76promax.dao.custom.ManegeshedultocustormerDAO;
+import edu.lk.ijse.projectgym.demo76promax.dao.custom.SendshedultocustormerDAO;
 import edu.lk.ijse.projectgym.demo76promax.entity.ManegeShedulToCustormer;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class ManegeshedultocustormerDAOImpl implements ManegeshedultocustormerDAO {
+public class SendshedultocustormerDAOImpl implements SendshedultocustormerDAO {
 
     @Override
     public List<ManegeShedulToCustormer> getAll() throws ClassNotFoundException, SQLException {

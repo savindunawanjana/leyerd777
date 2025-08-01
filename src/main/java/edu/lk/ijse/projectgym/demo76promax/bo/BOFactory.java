@@ -41,14 +41,14 @@ public class BOFactory {
 //            case LOGINFORSYSTEM -> (T) new LoginForSystemBOImpl();
 //            case LOGINMANEGER -> (T) new LoginManagerBOImpl();
 //            case LOGIMNOWNER -> (T) new LoginOwnerBOImpl();
-//            case MANEGEEXSAIS -> (T) new ManageExerciseBOImpl();
+            case MANEGEEXSAIS -> (T) new ExsasaisdeatilesBoimpl();
 //            case MANEGERLOGIN -> (T) new ManagerLoginBOImpl();
 //            case MONTHLYMASSEGESENDPAGE -> (T) new MonthlyMessageSendPageBOImpl();
 //            case MONTHLYRIPORTPAGE -> (T) new MonthlyReportPageBOImpl();
 //            case ODERPAGE -> (T) new OrderPageBOImpl();
 //            case OWNERANDADMINLOGINPAGE -> (T) new OwnerAndAdminLoginPageBOImpl();
 //            case SENDMASSEGEPAGE -> (T) new SendMessagePageBOImpl();
-//            case SENDSHEDULTOCUSTORMER -> (T) new SendScheduleToCustomerBOImpl();
+            case SENDSHEDULTOCUSTORMER -> (T) new SendshedultoCustormerBOimpl();
             case USERDEATILESPAGE -> (T) new UserdeatilesmenuBOImpl();
             case USERDORPASWORD -> (T) new UserDoorPwuiBOImpl();
               case USERMANEGE -> (T) new UsermanegeBOImpl();

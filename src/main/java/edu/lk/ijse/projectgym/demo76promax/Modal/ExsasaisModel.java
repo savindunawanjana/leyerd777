@@ -1,7 +1,6 @@
 package edu.lk.ijse.projectgym.demo76promax.Modal;
 
 import edu.lk.ijse.projectgym.demo76promax.Dbconnection.Dbconnection;
-import edu.lk.ijse.projectgym.demo76promax.Dtos.ExsaisDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.ExsaisTm;
 
 import java.sql.Connection;
@@ -35,36 +34,36 @@ public class ExsasaisModel {
 //    }
 
 
-    public String deleteMethod(String Id) throws SQLException, ClassNotFoundException {
+//    public String deleteMethod(String Id) throws SQLException, ClassNotFoundException {
+//
+//        connection = Dbconnection.getObject().getConnection();
+//        String sql = "DELETE FROM manage_exercises WHERE id=?";
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.setString(1, Id);
+//        int i = preparedStatement.executeUpdate();
+//        if (i > 0) {
+//            return "Successfuly delete ";
+//        } else {
+//            return "Failed delete ";
+//        }
+//
+//    }
 
-        connection = Dbconnection.getObject().getConnection();
-        String sql = "DELETE FROM manage_exercises WHERE id=?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, Id);
-        int i = preparedStatement.executeUpdate();
-        if (i > 0) {
-            return "Successfuly delete ";
-        } else {
-            return "Failed delete ";
-        }
-
-    }
-
-    public String updateMethod(ExsaisDto dto) throws SQLException, ClassNotFoundException {
-        connection = Dbconnection.getObject().getConnection();
-        String sql = "UPDATE manage_exercises SET  name=?,category=? WHERE id=? ";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, dto.getExsaisName());
-        preparedStatement.setString(2, dto.getExsaisCategory());
-
-        preparedStatement.setInt(3, dto.getId());
-        int i = preparedStatement.executeUpdate();
-        if (i > 0) {
-            return "Successfuly update ";
-        } else {
-            return "Failed update ";
-        }
-    }
+//    public String updateMethod(ExsaisDto dto) throws SQLException, ClassNotFoundException {
+//        connection = Dbconnection.getObject().getConnection();
+//        String sql = "UPDATE manage_exercises SET  name=?,category=? WHERE id=? ";
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.setString(1, dto.getExsaisName());
+//        preparedStatement.setString(2, dto.getExsaisCategory());
+//
+//        preparedStatement.setInt(3, dto.getId());
+//        int i = preparedStatement.executeUpdate();
+//        if (i > 0) {
+//            return "Successfuly update ";
+//        } else {
+//            return "Failed update ";
+//        }
+//    }
 
     public ArrayList<ExsaisTm> getAllmethod() throws SQLException, ClassNotFoundException {
 

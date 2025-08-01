@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,7 +16,7 @@ public class ExsaisTm {
     private int id;
     private String exsaisName;
     private String exsaisCategory;
-    private String date;
+    private Timestamp date;
     private String systemUserRoll;
 
 }

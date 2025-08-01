@@ -16,24 +16,24 @@ public class ManegeexsersaisDAOImpl implements ManegeExsersaisDAO {
 
     @Override
     public List<ManegeExercise> getAll() throws ClassNotFoundException, SQLException {
-        List<ExsaisTm> list = new ArrayList();
-        connection = Dbconnection.getObject().getConnection();
+        List<ManegeExercise> list = new ArrayList();
+        Connection connection1 = Dbconnection.getObject().getConnection();
         String sql = "SELECT * FROM manage_exercises";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        PreparedStatement preparedStatement = connection1.prepareStatement(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
-        ExsaisTm exsaistm;
+        ManegeExercise manegeExercise;
 
         while (resultSet.next()) {
-            exsaistm = new ExsaisTm(
+            manegeExercise = new ManegeExercise(
 
                     resultSet.getInt("id"),
                     resultSet.getString("name"),
                     resultSet.getString("category"),
-                    resultSet.getString("added_date"),
+                    resultSet.getTimestamp("added_date"),
                     resultSet.getString("system_user_id")
             );
 
-            list.add(exsaistm);
+            list.add(manegeExercise);
         }
 
         return list;

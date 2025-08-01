@@ -34,7 +34,7 @@ public class DAOFactory {
             case ITEMS->(T) new ItemDAOImpl();
             case LABLE->(T) new LableDAOImpl();
             case MANEGEEXERCISE->(T) new ManegeexsersaisDAOImpl();
-            case MANEGESHEDULTOCUSTOMER->(T) new ManegeshedultocustormerDAOImpl();
+         case SENDSHEDULTOCUSTOMER->(T) new SendshedultocustormerDAOImpl();
             case MONTHLYRIPORT->(T) new MonthlyriportDAOImpl();
             case MONTHLYSUMERY->(T) new MonthlysummeryDAOImpl();
             case ODERDEATILES->(T) new OderdeatilesDAOImpl();
