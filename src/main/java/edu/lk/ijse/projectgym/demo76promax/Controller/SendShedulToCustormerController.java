@@ -3,10 +3,11 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.ExsaisTm;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.SelectExsaisTm;
-import edu.lk.ijse.projectgym.demo76promax.Modal.ExsasaisModel;
+//import edu.lk.ijse.projectgym.demo76promax.Modal.ExsasaisModel;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CustormerManegeBO;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.SendshedultoCustormerBO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +29,9 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class SendShedulToCustormerController implements Initializable {
+
+    private SendshedultoCustormerBO sendshedultoCustormerBO = BOFactory.getInstance().getBOTypes(BOTypes.SENDSHEDULTOCUSTORMER);
+
     private CustormerManegeBO custormerManegeBO = BOFactory.getInstance().getBOTypes(BOTypes.CUSTORMERMANEGE);
     public TextField txtEmail;
     public TextField txtCustomerName;
@@ -59,7 +63,7 @@ public class SendShedulToCustormerController implements Initializable {
 
     private ObservableList<SelectExsaisTm> scheduleList = FXCollections.observableArrayList();
 
-    private final ExsasaisModel exsasaisModel = new ExsasaisModel();
+ //   private final ExsasaisModel exsasaisModel = new ExsasaisModel();
   //  private final CustormerModel custormerModel = new CustormerModel();
 
     public SendShedulToCustormerController() throws SQLException, ClassNotFoundException {}
@@ -112,7 +116,7 @@ public class SendShedulToCustormerController implements Initializable {
     }
 
     public void lodeChoosTable() throws SQLException, ClassNotFoundException {
-        ObservableList<ExsaisTm> observableList = FXCollections.observableArrayList(exsasaisModel.getAllmethod());
+        ObservableList<ExsaisTm> observableList = FXCollections.observableArrayList(sendshedultoCustormerBO.getAllmethod());
 
         colExercisenameChoss.setCellValueFactory(new PropertyValueFactory<>("exsaisName"));
         colExerciseCatorgaryChoss.setCellValueFactory(new PropertyValueFactory<>("exsaisCategory"));
