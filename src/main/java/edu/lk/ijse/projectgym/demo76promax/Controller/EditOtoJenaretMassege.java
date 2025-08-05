@@ -1,6 +1,9 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
-import edu.lk.ijse.projectgym.demo76promax.Modal.MassegeModal;
+
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.EditotogenaretmassegeBO;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,7 +19,8 @@ import java.util.ResourceBundle;
 //import static edu.lk.ijse.projectgym.demo76promax.Controller.OtogenaretMasegeController.sendeMassegeOtomaticaly;
 
 public class EditOtoJenaretMassege  implements Initializable {
-    private MassegeModal massegeModal= new MassegeModal();
+
+    private EditotogenaretmassegeBO editogenaretmassegeBO = BOFactory.getInstance().getBOTypes(BOTypes.EDITEOTOJENARETMASSEGE);
     public AnchorPane AncorPane;
     public Button butnSaveMassege;
     public Label lblmasseg;
@@ -26,28 +30,26 @@ public class EditOtoJenaretMassege  implements Initializable {
     public void Buttensave_on_action(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
 
         String rsp = textfildmassege.getText();
-        String rsp2=massegeModal.getmassege();
-        massegeModal.deletemethod(rsp2);
-        massegeModal.saveMessage(rsp);
-        String rsp1=massegeModal.getmassege();
+        String rsp2=editogenaretmassegeBO.getmassege();
+        editogenaretmassegeBO.deletemethod(rsp2);
+        editogenaretmassegeBO.saveMessage(rsp);
+        String rsp1=editogenaretmassegeBO.getmassege();
         lblmasseg.setText(rsp1);
     }
 
     public String getlable() throws SQLException, ClassNotFoundException {
 
-        String rsp1=massegeModal.getmassege();
+        String rsp1=editogenaretmassegeBO.getmassege();
       return rsp1;
 
 
     }
-
     public void on_key_pressed(KeyEvent keyEvent) {
     }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            String rsp1=massegeModal.getmassege();
+            String rsp1=editogenaretmassegeBO.getmassege();
             lblmasseg.setText(rsp1);
         } catch (Exception e) {
             e.printStackTrace();

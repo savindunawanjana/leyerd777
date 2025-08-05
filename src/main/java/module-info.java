@@ -8,6 +8,7 @@ module edu.lk.ijse.projectgym.demo76promax {
     requires java.desktop;
     requires java.mail;
     requires net.sf.jasperreports.core;
+    requires batik.anim;
 
     opens edu.lk.ijse.projectgym.demo76promax.Dtos to javafx.base;//table eke data pennuwe na meka danakam
     opens edu.lk.ijse.projectgym.demo76promax.Controller to javafx.fxml;

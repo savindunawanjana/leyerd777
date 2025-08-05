@@ -16,7 +16,6 @@ public class MonthlyMessagesendPageController {
 
 
         new Thread(() -> {
-
             try {
                 otogenaretMasegeController.sendeMassegeOtomaticaly();
 

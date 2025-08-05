@@ -31,7 +31,7 @@ public class BOFactory {
 //            case DASHBORD -> (T) new DashboardBOImpl();
            case DELETECLENER -> (T) new ClenerdeleteBOimpl();
             case DELETECOACH -> (T) new CoachdeleteBOimpl();
-//            case EDITEOTOJENARETMASSEGE -> (T) new EditAutoGenerateMessageBOImpl();
+           case EDITEOTOJENARETMASSEGE -> (T) new EditotogenaretmassegeBOimpl();
 //            case EMPLOYEEATENDENS -> (T) new EmployeeAttendanceBOImpl();
             case EMPLOYEEDATAFROMATABLE -> (T) new EmployedeatilesmanegementBOimpl();
            case EMPLOYEEPAYMENTS -> (T) new EmployeePaymentmanegementBOimpl();
