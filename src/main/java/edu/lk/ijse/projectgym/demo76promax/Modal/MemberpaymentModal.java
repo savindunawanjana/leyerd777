@@ -1,4 +1,4 @@
-package edu.lk.ijse.projectgym.demo76promax.Modal;
+//package edu.lk.ijse.projectgym.demo76promax.Modal;
 
 import edu.lk.ijse.projectgym.demo76promax.Dbconnection.Dbconnection;
 
@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MemberpaymentModal {
+//public class MemberpaymentModal {
 
 //    public String savemethadeFromModel(memberPaymentDto paymentdto) throws SQLException, ClassNotFoundException {
 //        Connection connection = Dbconnection.getObject().getConnection();
@@ -26,24 +26,24 @@ public class MemberpaymentModal {
 //
 //    }
 
-    public String DubliceteDeliteButten() throws SQLException, ClassNotFoundException {
-        Connection connection = Dbconnection.getObject().getConnection();
-        String sql = """
-            DELETE a FROM customer_payment a
-            JOIN customer_payment b ON 
-                a.customer_id = b.customer_id AND
-                a.expire_date = b.expire_date AND
-                a.valid_months = b.valid_months AND
-                a.system_user_id = b.system_user_id AND
-                a.payment_date = b.payment_date AND
-                a.payments = b.payments AND
-                a.payment_id > b.payment_id
-        """;
-
-        Statement statement = connection.createStatement();
-        int count = statement.executeUpdate(sql);
-        return count > 0 ? "Duplicate entries deleted successfully" : "No duplicates to delete";
-    }
+//    public String DubliceteDeliteButten() throws SQLException, ClassNotFoundException {
+//        Connection connection = Dbconnection.getObject().getConnection();
+//        String sql = """
+//            DELETE a FROM customer_payment a
+//            JOIN customer_payment b ON
+//                a.customer_id = b.customer_id AND
+//                a.expire_date = b.expire_date AND
+//                a.valid_months = b.valid_months AND
+//                a.system_user_id = b.system_user_id AND
+//                a.payment_date = b.payment_date AND
+//                a.payments = b.payments AND
+//                a.payment_id > b.payment_id
+//        """;
+//
+//        Statement statement = connection.createStatement();
+//        int count = statement.executeUpdate(sql);
+//        return count > 0 ? "Duplicate entries deleted successfully" : "No duplicates to delete";
+//    }
 
  //   public ObservableList<memberPaymentDto> getAllmethod() throws SQLException, ClassNotFoundException {
 //        ObservableList<memberPaymentDto> members = FXCollections.observableArrayList();
@@ -89,4 +89,4 @@ public class MemberpaymentModal {
 //    }
 
     // Removed serchMethodfrompassword because the column `password` does not exist in customer_payment
-}
+//}

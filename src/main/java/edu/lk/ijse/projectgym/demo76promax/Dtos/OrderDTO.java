@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * --------------------------------------------
@@ -26,6 +27,6 @@ public class OrderDTO {
     private String orderId;
     private String customerId;
     private Date date;
-    private ArrayList<OrderDetailsDTO> cartList;
+    private List<OrderDetailsDTO> cartList;
 
 }

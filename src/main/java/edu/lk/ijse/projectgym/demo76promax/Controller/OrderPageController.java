@@ -1,16 +1,20 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
-
 import edu.lk.ijse.projectgym.demo76promax.Dbconnection.Dbconnection;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.ItemDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.OrderDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.OrderDetailsDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.CartTM;
-import edu.lk.ijse.projectgym.demo76promax.Modal.ItemModel;
-import edu.lk.ijse.projectgym.demo76promax.Modal.OderModel;
+//import edu.lk.ijse.projectgym.demo76promax.Modal.ItemModel;
+//import edu.lk.ijse.projectgym.demo76promax.Modal.OderModel;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
 import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
 import edu.lk.ijse.projectgym.demo76promax.bo.Custom.CustormerManegeBO;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.ItemBO;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.PlaceoderBo;
+import edu.lk.ijse.projectgym.demo76promax.dao.DAOFactory;
+import edu.lk.ijse.projectgym.demo76promax.dao.custom.ItemDAO;
+import edu.lk.ijse.projectgym.demo76promax.dao.util.DAOTipes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,6 +37,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class OrderPageController implements Initializable {
@@ -90,10 +95,13 @@ public class OrderPageController implements Initializable {
     private CustormerManegeBO custormerManegeBO = BOFactory.getInstance().getBOTypes(BOTypes.CUSTORMERMANEGE);
     @FXML
     private TextField txtAddToCartQty;
-
-    private final OderModel orderModel = new OderModel();
+private PlaceoderBo placeoderBo = BOFactory.getInstance().getBOTypes(BOTypes.PLACEODER);
+   // private final OderModel orderModel = new OderModel();
     //private final CustormerModel customerModel = new CustormerModel();
-    private final ItemModel itemModel = new ItemModel();
+//    private final ItemModel itemModel = new ItemModel();
+    private ItemBO itemBO= BOFactory.getInstance().getBOTypes(BOTypes.ITEM);
+
+//    ItemBO itemBO = BOFactory.getInstance().getBOTypes();
 
     private final ObservableList<CartTM> cartData = FXCollections.observableArrayList();
 
@@ -122,7 +130,7 @@ public class OrderPageController implements Initializable {
     }
 
     private void resetPage() throws SQLException, ClassNotFoundException {
-        lblOrderId.setText(orderModel.getNextOrderId());
+        lblOrderId.setText(placeoderBo.getNextOrderId());
 
 //        orderDate.setText(String.valueOf(LocalDate.now()));
         //   orderDate.setText(LocalDate.now().toString());
@@ -135,7 +143,7 @@ public class OrderPageController implements Initializable {
 //        cmbItemId
         cmbItemId.setItems(
                 FXCollections.observableArrayList(
-                        itemModel.getAllItemIds()
+                        itemBO.getAllItemIds()
                 )
         );
     }
@@ -255,7 +263,7 @@ public class OrderPageController implements Initializable {
         String orderId = lblOrderId.getText();
         Date date = Date.valueOf(LocalDate.now());
 
-        ArrayList<OrderDetailsDTO> cartList = new ArrayList<>();
+        List<OrderDetailsDTO> cartList = new ArrayList<>();
 
         for (CartTM cartTM : cartData) {
             OrderDetailsDTO orderDetailsDTO = new OrderDetailsDTO(
@@ -275,7 +283,7 @@ public class OrderPageController implements Initializable {
         );
 
         try {
-            boolean isPlaced = orderModel.placeOrder(orderDTO);
+            boolean isPlaced = placeoderBo.placeOrder(orderDTO);
 
             if (isPlaced) {
                 resetPage();
@@ -353,7 +361,7 @@ public class OrderPageController implements Initializable {
 
         try {
 
-            lblOrderId.setText(orderModel.getNextOrderId());
+            lblOrderId.setText(placeoderBo.getNextOrderId());
 
             // Reload combo boxes
             loadCustomerIds();
@@ -375,7 +383,7 @@ public class OrderPageController implements Initializable {
     @FXML
     void cmbItemOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String selectedId = cmbItemId.getSelectionModel().getSelectedItem();
-        ItemDTO itemDTO = itemModel.findById(selectedId);
+        ItemDTO itemDTO = itemBO.findById(selectedId);
 
         if (itemDTO != null) {
             lblItemName.setText(itemDTO.getName());

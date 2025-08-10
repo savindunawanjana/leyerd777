@@ -72,18 +72,20 @@ public class itemModel2 {
         }
         return itemList;
     }
-    public List<String> getAllSupplierIds() throws SQLException, ClassNotFoundException {
-        List<String> ids = new ArrayList<>();
-        String sql = "SELECT supplier_id FROM supplier";
-        Connection con = Dbconnection.getObject().getConnection();
-        PreparedStatement pst = con.prepareStatement(sql);
-        ResultSet rs = pst.executeQuery();
-        while (rs.next()) {
-            ids.add(rs.getString("supplier_id"));
-        }
-        return ids;
-    }
 
+    // No usege
+//    public List<String> getAllSupplierIds() throws SQLException, ClassNotFoundException {
+//        List<String> ids = new ArrayList<>();
+//        String sql = "SELECT supplier_id FROM supplier";
+//        Connection con = Dbconnection.getObject().getConnection();
+//        PreparedStatement pst = con.prepareStatement(sql);
+//        ResultSet rs = pst.executeQuery();
+//        while (rs.next()) {
+//            ids.add(rs.getString("supplier_id"));
+//        }
+//        return ids;
+//    }
+//
 
 
 }

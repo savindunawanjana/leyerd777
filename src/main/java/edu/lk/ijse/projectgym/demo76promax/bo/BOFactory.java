@@ -48,10 +48,12 @@ public class BOFactory {
 //            case ODERPAGE -> (T) new OrderPageBOImpl();
 //            case OWNERANDADMINLOGINPAGE -> (T) new OwnerAndAdminLoginPageBOImpl();
 //            case SENDMASSEGEPAGE -> (T) new SendMessagePageBOImpl();
+            case PLACEODER->(T) new PlaceoderBoimpl();
             case SENDSHEDULTOCUSTORMER -> (T) new SendshedultoCustormerBOimpl();
             case USERDEATILESPAGE -> (T) new UserdeatilesmenuBOImpl();
             case USERDORPASWORD -> (T) new UserDoorPwuiBOImpl();
               case USERMANEGE -> (T) new UsermanegeBOImpl();
+              case ITEM-> (T) new ItemBOimpl();
 
         };
 

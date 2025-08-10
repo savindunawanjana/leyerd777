@@ -18,7 +18,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+//mela sambanda wenne  itemmodel2 ekath ekka
 public class AddItemsController implements Initializable {
 
 

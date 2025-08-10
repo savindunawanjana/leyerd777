@@ -16,6 +16,6 @@ public class OderDeatiles {
     private String orderId;
     private String ItemId;
     private int quantity;
-    private BigDecimal price;
+    private double price;
 
 }
