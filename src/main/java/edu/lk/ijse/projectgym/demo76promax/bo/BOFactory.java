@@ -25,7 +25,7 @@ public class BOFactory {
             case CUSTORMERDEATILESMENU -> (T) new CustomerDetailsMenuBOImpl();
             case SAVECLEANER -> (T) new ClenerSaveBOimpl();
 //            case ADDITEMS -> (T) new AdditemsBOImpl();
-//            case ADDSUPLAYERS -> (T) new AddsuplayersBOImpl();
+            case ADDSUPLAYERS -> (T) new SuplayerBOimpl();
             case CUSTORMERMANEGE -> (T)new CustormerManegeBOImpl();
            case CUSTORMERDORPAYMENTS -> (T) new CustormerpaymentBOImpl();
 //            case DASHBORD -> (T) new DashboardBOImpl();

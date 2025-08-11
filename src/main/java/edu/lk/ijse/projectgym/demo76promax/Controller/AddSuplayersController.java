@@ -1,7 +1,10 @@
 package edu.lk.ijse.projectgym.demo76promax.Controller;
 
 import edu.lk.ijse.projectgym.demo76promax.Dtos.SuplayerDto;
-import edu.lk.ijse.projectgym.demo76promax.Modal.SuplayerModel;
+//import edu.lk.ijse.projectgym.demo76promax.Modal.SuplayerModel;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.SuplayerBO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,7 +48,8 @@ public class AddSuplayersController implements Initializable {
     private TableColumn<SuplayerDto, String> colEmail;
     @FXML
     private TableColumn<SuplayerDto, String> colAddress;
-    private SuplayerModel suplayerModel = new SuplayerModel();
+   // private SuplayerModel suplayerModel = new SuplayerModel();
+   private SuplayerBO suplayerBO= BOFactory.getInstance().getBOTypes(BOTypes.ADDSUPLAYERS);
 
     public void saveMethod() {
 
@@ -90,10 +94,10 @@ public class AddSuplayersController implements Initializable {
         );
 
         try {
-            String rsp = suplayerModel.saveSuplayer(suplayerDto);
+            String rsp = suplayerBO.saveSuplayer(suplayerDto);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle(rsp);
-            alert.setHeaderText(" CONFIRMATION ");
+            alert.setHeaderText(" Saved Successfully ");
             alert.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,10 +112,10 @@ public class AddSuplayersController implements Initializable {
     public void deleteMethod() {
         String id = txtSupplierId.getText();
         try {
-            String rsp = suplayerModel.deleteSuplayer(id);
+            String rsp = suplayerBO.deleteSuplayer(id);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle(rsp);
-            alert.setHeaderText(" CONFIRMATION ");
+            alert.setHeaderText(" Deleted Successfully");
             alert.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,7 +128,7 @@ public class AddSuplayersController implements Initializable {
     public void LodeTableMethod() throws SQLException, ClassNotFoundException {
 
 
-        ObservableList<SuplayerDto> list = FXCollections.observableArrayList(suplayerModel.getAll());
+        ObservableList<SuplayerDto> list = FXCollections.observableArrayList(suplayerBO.getAll());
         colId.setCellValueFactory(new PropertyValueFactory<>("supplier_id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("supplier_name"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("pone_number"));
@@ -150,7 +154,7 @@ public class AddSuplayersController implements Initializable {
                Address
        );
        
-       String rsp =suplayerModel.updateSuplayer(suplayerDto);
+       String rsp =suplayerBO.updateSuplayer(suplayerDto);
 
        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
        alert.setTitle(rsp);

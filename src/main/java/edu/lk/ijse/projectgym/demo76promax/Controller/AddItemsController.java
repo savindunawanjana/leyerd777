@@ -3,8 +3,12 @@ package edu.lk.ijse.projectgym.demo76promax.Controller;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.ItemDTO;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.SuplayerDto;
 import edu.lk.ijse.projectgym.demo76promax.Dtos.tm.ExsaisTm;
-import edu.lk.ijse.projectgym.demo76promax.Modal.SuplayerModel;
-import edu.lk.ijse.projectgym.demo76promax.Modal.itemModel2;
+//import edu.lk.ijse.projectgym.demo76promax.Modal.SuplayerModel;
+//import edu.lk.ijse.projectgym.demo76promax.Modal.itemModel2;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOFactory;
+import edu.lk.ijse.projectgym.demo76promax.bo.BOTypes;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.ItemBO;
+import edu.lk.ijse.projectgym.demo76promax.bo.Custom.SuplayerBO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,12 +24,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 //mela sambanda wenne  itemmodel2 ekath ekka
 public class AddItemsController implements Initializable {
-
+private ItemBO itemBO = BOFactory.getInstance().getBOTypes(BOTypes.ITEM);
+//    private SuplayerModel suplayerModel = new SuplayerModel();
+private SuplayerBO suplayerBO= BOFactory.getInstance().getBOTypes(BOTypes.ADDSUPLAYERS);
 
     private final String idPattern = "^I.*$";
 
     public Button btnresetId;
-    private SuplayerModel suplayerModel = new SuplayerModel();
+
     private SuplayerDto suplayerDto = new SuplayerDto();
     public Button btnAdd;
     public Button btnUpdate;
@@ -54,13 +60,13 @@ public class AddItemsController implements Initializable {
     private TableColumn<ExsaisTm, String> colSupplierId;
 
 
-    private itemModel2 itemModel2 = new itemModel2();
+//    private itemModel2 itemModel2 = new itemModel2();
 
-    private SuplayerModel model = new SuplayerModel();
+
 
     public void lodetable() throws SQLException, ClassNotFoundException {
 
-        ObservableList<ItemDTO> dtos = FXCollections.observableArrayList(itemModel2.getAllItems());
+        ObservableList<ItemDTO> dtos = FXCollections.observableArrayList(itemBO.getAllItems());
 
         colItemId.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -92,14 +98,15 @@ public class AddItemsController implements Initializable {
 
                 ItemDTO newItem = new ItemDTO(itemId, name, quantity, unitPrice, supplierId);
 
-                boolean isSaved = itemModel2.saveItem(newItem);
+                boolean isSaved = itemBO.saveItem(newItem);
 
 
 
                 if (isSaved) {
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Item saved successfully!");
                     alert.show();
-
+                    clearFields();
                     lodetable();
                     clearFields();
                 } else {
@@ -127,7 +134,7 @@ public class AddItemsController implements Initializable {
 
             ItemDTO updatedItem = new ItemDTO(itemId, name, quantity, unitPrice, supplierId);
 
-            boolean isUpdated = itemModel2.updateItem(updatedItem);
+            boolean isUpdated = itemBO.updateItem(updatedItem);
 
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION, "Item updated successfully!").show();
@@ -147,7 +154,7 @@ public class AddItemsController implements Initializable {
         try {
             String itemId = txtItemId.getText();
 
-            boolean isDeleted = itemModel2.deleteItem(itemId);
+            boolean isDeleted = itemBO.deleteItem(itemId);
 
             if (isDeleted) {
                 new Alert(Alert.AlertType.INFORMATION, "Item deleted successfully!").show();
@@ -199,7 +206,7 @@ public class AddItemsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            ArrayList<SuplayerDto> list = suplayerModel.getAll();
+            ArrayList<SuplayerDto> list = suplayerBO.getAll();
             ArrayList<String> suplayerIds = new ArrayList<>();
             for (SuplayerDto dto : list) {
                 suplayerIds.add(dto.getSupplier_id());
