@@ -23,7 +23,7 @@
             <Font name="System Bold Italic" size="68.0" />
          </font>
       </Label>
-      <Button fx:id="btnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickBacknuttontoback" prefHeight="55.0" prefWidth="143.0" style="-fx-background-color: #5F99AE;" text="&lt;=">
+      <Button fx:id="btnBack" layoutX="843.0" layoutY="787.0" mnemonicParsing="false" onAction="#clickBacknuttontoback" prefHeight="63.0" prefWidth="195.0" style="-fx-background-color: #5F99AE; -fx-border-radius: 50px;" text="Close App">
          <font>
             <Font name="System Bold Italic" size="28.0" />
          </font>

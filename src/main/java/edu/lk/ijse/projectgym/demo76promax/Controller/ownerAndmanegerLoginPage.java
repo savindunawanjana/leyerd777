@@ -51,10 +51,10 @@ public class ownerAndmanegerLoginPage {
 
     public void clickBacknuttontoback(ActionEvent actionEvent) throws IOException {
 
-        ancpanesecondLogin.getChildren().clear();
-        Parent parent = FXMLLoader.load(getClass().getResource("/View/loginForsystems.fxml"));
-        ancpanesecondLogin.getChildren().add(parent);
-
+//        ancpanesecondLogin.getChildren().clear();
+//        Parent parent = FXMLLoader.load(getClass().getResource("/View/loginForsystems.fxml"));
+//        ancpanesecondLogin.getChildren().add(parent);
+        System.exit(0);
 
     }
 
